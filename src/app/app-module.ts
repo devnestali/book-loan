@@ -10,6 +10,8 @@ import { Footer } from './components/footer/footer';
 import { BaseUi } from './components/base-ui/base-ui';
 import { Clients } from './pages/clients/clients';
 import { ClientForms } from './pages/client-forms/client-forms';
+import { Books } from './pages/books/books';
+import { BookForms } from './pages/book-forms/book-forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { ClientForms } from './pages/client-forms/client-forms';
     Footer,
     BaseUi,
     Clients,
-    ClientForms
+    ClientForms,
+    Books,
+    BookForms
   ],
   imports: [
     BrowserModule,
