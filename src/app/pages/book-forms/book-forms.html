@@ -1,1 +1,60 @@
-<p>book-forms works!</p>
+<div class="container mt-5">
+  <h2>Nuevo libro</h2>
+  <hr />
+
+  <form>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label for="name" class="form-label">Nombre</label>
+        <input
+          id="name"
+          type="text"
+          class="form-control"
+          placeholder="Introduzca el nombre del libro"
+        />
+      </div>
+      <div class="col-md-8">
+        <label for="autor" class="form-label">Autor</label>
+        <input
+          id="autor"
+          type="text"
+          class="form-control"
+          placeholder="Introduzca el nombre del autor"
+        />
+      </div>
+
+      <div class="col-md-6">
+        <label for="publisher" class="form-label">Editora</label>
+        <input
+          id="publisher"
+          type="text"
+          class="form-control"
+          placeholder="Introduzca el nombre de la editora"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="publicationYear" class="form-label">Fecha de publicación</label>
+        <input
+          id="publicationYear"
+          type="date"
+          class="form-control"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <label for="bookEdition" class="form-label">Edición del libro</label>
+        <input
+          id="bookEdition"
+          type="text"
+          class="form-control"
+          placeholder="Edición"
+        />
+      </div>
+
+      <div class="col-md-12 mt-3">
+        <button class="btn btn-success">Incluir</button>
+      </div>
+    </div>
+  </form>
+</div>

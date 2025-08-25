@@ -4,6 +4,7 @@ import { Home } from './pages/home/home';
 import { Clients } from './pages/clients/clients';
 import { ClientForms } from './pages/client-forms/client-forms';
 import { Books } from './pages/books/books';
+import { BookForms } from './pages/book-forms/book-forms';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'books',
     component: Books
+  },
+  {
+    path: 'books/create',
+    component: BookForms
   }
 ];
 
