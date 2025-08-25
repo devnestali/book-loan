@@ -1,1 +1,92 @@
-<p>client-forms works!</p>
+<div class="container mt-5">
+  <h2>Nuevo cliente</h2>
+  <hr />
+
+  <form>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <label for="identification" class="form-label">NIE/DNI</label>
+        <input
+          id="identification"
+          type="text"
+          class="form-control"
+          placeholder="Introduzca su número de identificación"
+        />
+      </div>
+      <div class="col-md-8">
+        <label for="name" class="form-label">Nombre</label>
+        <input
+          id="name"
+          type="text"
+          class="form-control"
+          placeholder="Introduzca su nombre"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="address" class="form-label">Dirección</label>
+        <input
+          id="address"
+          type="text"
+          class="form-control"
+          placeholder="Introduzca su dirección"
+        />
+      </div>
+
+      <div class="col-md-2">
+        <label for="number" class="form-label">Numero</label>
+        <input
+          id="number"
+          type="number"
+          class="form-control"
+          placeholder="Introduzca su numero"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="city" class="form-label">Ciudad</label>
+        <input
+          id="city"
+          type="text"
+          class="form-control"
+          placeholder="Nombre de la ciudad"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="neighborhood" class="form-label">Bario</label>
+        <input
+          id="neighborhood"
+          type="text"
+          class="form-control"
+          placeholder="Nombre del bario"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="landline" class="form-label">Teléfono fijo</label>
+        <input
+          id="landline"
+          type="tel"
+          pattern="^[6789][0-9]{8}$"
+          class="form-control"
+          placeholder="612345678"
+        />
+      </div>
+
+      <div class="col-md-4">
+        <label for="cellphone" class="form-label">Teléfono móvil</label>
+        <input
+          id="cellphone"
+          type="tel"
+          pattern="^[6789][0-9]{8}$"
+          class="form-control"
+          placeholder="612345678"
+        />
+      </div>
+
+      <div class="col-md-12 mt-3">
+        <button class="btn btn-success">Incluir</button>
+      </div>
+    </div>
+  </form>
+</div>
