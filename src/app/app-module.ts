@@ -12,6 +12,7 @@ import { Clients } from './pages/clients/clients';
 import { ClientForms } from './pages/client-forms/client-forms';
 import { Books } from './pages/books/books';
 import { BookForms } from './pages/book-forms/book-forms';
+import { Loan } from './pages/loan/loan';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BookForms } from './pages/book-forms/book-forms';
     Clients,
     ClientForms,
     Books,
-    BookForms
+    BookForms,
+    Loan
   ],
   imports: [
     BrowserModule,
