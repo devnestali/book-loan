@@ -13,6 +13,7 @@ import { ClientForms } from './pages/client-forms/client-forms';
 import { Books } from './pages/books/books';
 import { BookForms } from './pages/book-forms/book-forms';
 import { Loan } from './pages/loan/loan';
+import { InfoBook } from './components/info-book/info-book';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { Loan } from './pages/loan/loan';
     ClientForms,
     Books,
     BookForms,
-    Loan
+    Loan,
+    InfoBook
   ],
   imports: [
     BrowserModule,

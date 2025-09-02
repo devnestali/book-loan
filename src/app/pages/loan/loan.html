@@ -28,103 +28,15 @@
         <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
       </div>
       <div class="scrollabel">
-        <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Titulo del libro</h5>
-          <p>
-            <b>Autor: </b> Robert C. Martin <br />
-            <b>Editora: </b> ANAYA MULTIMEDIA <br />
-            <b>Edición: </b> 2020 <br />
-          </p>
-        </div>
-      </div>
+        <app-info-book *ngFor="let book of books" [book]="book"></app-info-book>
       </div>
     </div>
   </div>
 
   <div class="row mt-4 mb-4">
     <div class="col-12">
-      <button class="btn btn-success">Confirmar préstamo</button>
+      <button class="btn btn-success me-2">Confirmar préstamo</button>
+      <button class="btn btn-secondary">Cancelar</button>
     </div>
   </div>
 </div>
