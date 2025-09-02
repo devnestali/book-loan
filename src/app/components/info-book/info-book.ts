@@ -8,5 +8,5 @@ import { Book } from '../../models/book';
   styleUrl: './info-book.css'
 })
 export class InfoBook {
-  @Input() book: Book | undefined;
+  @Input() book?: Book;
 }

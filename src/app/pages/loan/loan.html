@@ -20,16 +20,7 @@
           <i class="fa fa-search"></i>
         </button>
       </div>
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5>Nombre del cliente</h5>
-          <p>
-            <b>NIE/DNI: </b> XX.XX.XX.XX <br />
-            <b>Dirección: </b> Calle Exemplo <br />
-            <b>Contacto: </b> (643) 99 99 99 | (643) 99 99 99<br />
-          </p>
-        </div>
-      </div>
+      <app-info-client [client]="client" [showTrash]="true"></app-info-client>
     </div>
 
     <div class="col-md-6 mb-4">
@@ -39,7 +30,9 @@
         <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
       </div>
       <div class="scrollabel">
-        <app-info-book *ngFor="let book of books" [book]="book"></app-info-book>
+        @for (book of books; track $index) {
+          <app-info-book [book]="book"></app-info-book>
+        }
       </div>
     </div>
   </div>

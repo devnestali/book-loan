@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Book } from '../../models/book';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClientConsultation } from '../../modals/client-consultation/client-consultation';
+import { Client } from '../../models/client';
 
 @Component({
   selector: 'app-loan',
@@ -12,7 +13,7 @@ import { ClientConsultation } from '../../modals/client-consultation/client-cons
 export class Loan {
   books: Book[] = [
     {
-      id: 1,
+      Id: 1,
       livroAnoPublicacao: new Date(2025, 4, 20),
       livroAutor: 'Robert C. Martin',
       livroEdicao: '1',
@@ -20,7 +21,7 @@ export class Loan {
       livroEditora: 'ANAXIS'
     },
     {
-      id: 2,
+      Id: 2,
       livroAnoPublicacao: new Date(2025, 4, 20),
       livroAutor: 'Linus Torvalds',
       livroEdicao: '1',
@@ -28,6 +29,18 @@ export class Loan {
       livroEditora: 'ANAXIS'
     },
   ];
+
+  client: Client = {
+    Id: '1',
+    CliCPF: 'Y237123G',
+    CliNome: 'John Doe',
+    CliEndereco: 'Main St',
+    CliCidade: 'Anytown',
+    CliBairro: 'Central',
+    CliNumero: '123',
+    CliTelefoneCelular: '(123) 456-7890',
+    CliTelefoneFixo: '(098) 765-4321',
+  }
 
 
   bsModalRef?: BsModalRef;

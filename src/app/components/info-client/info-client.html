@@ -1,0 +1,28 @@
+<div class="card mb-2">
+  <div class="card-body">
+    <h5>{{client?.CliNome}}</h5>
+    <p>
+      <b>NIE/DNI: </b> {{client?.CliCPF}} <br />
+      <b>Ubicación: </b>
+      {{
+        client?.CliEndereco +
+        ', barrio ' +
+        client?.CliBairro +
+        ', ciudad ' +
+        client?.CliCidade +
+        ', numero ' +
+        client?.CliNumero
+      }} <br />
+      <b>Teléfono Móvil: </b> {{client?.CliTelefoneCelular}}<br />
+      <b>Teléfono Fijo: </b> {{client?.CliTelefoneFixo}}<br />
+    </p>
+    <div class="text-end">
+      @if(showTrash) {
+        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+      }
+      @if(showAdd) {
+        <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+      }
+    </div>
+  </div>
+</div>

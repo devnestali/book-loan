@@ -16,6 +16,7 @@ import { Loan } from './pages/loan/loan';
 import { InfoBook } from './components/info-book/info-book';
 import { ClientConsultation } from './modals/client-consultation/client-consultation';
 import { FormsModule } from '@angular/forms';
+import { InfoClient } from './components/info-client/info-client';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     BookForms,
     Loan,
     InfoBook,
-    ClientConsultation
+    ClientConsultation,
+    InfoClient
   ],
   imports: [
     BrowserModule,
