@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Book } from '../../models/book';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ClientConsultation } from '../../modals/client-consultation/client-consultation';
 
 @Component({
   selector: 'app-loan',
@@ -26,4 +28,18 @@ export class Loan {
       livroEditora: 'ANAXIS'
     },
   ];
+
+
+  bsModalRef?: BsModalRef;
+  clientConsultation = '';
+
+  constructor(private modalService: BsModalService) {}
+
+  openClientConsultationModal() {
+    const initialValues = {
+      clientConsultation: this.clientConsultation,
+    }
+
+    this.modalService.show(ClientConsultation, { initialState: initialValues });
+  }
 }

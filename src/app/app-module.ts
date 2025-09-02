@@ -14,6 +14,8 @@ import { Books } from './pages/books/books';
 import { BookForms } from './pages/book-forms/book-forms';
 import { Loan } from './pages/loan/loan';
 import { InfoBook } from './components/info-book/info-book';
+import { ClientConsultation } from './modals/client-consultation/client-consultation';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,12 +29,14 @@ import { InfoBook } from './components/info-book/info-book';
     Books,
     BookForms,
     Loan,
-    InfoBook
+    InfoBook,
+    ClientConsultation
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
