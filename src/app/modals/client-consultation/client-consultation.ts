@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from '../../models/client';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-client-consultation',
@@ -8,6 +10,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientConsultation implements OnInit {
   clientConsultation = ''
+  clients: Client[] =
+  [
+    {
+      Id: '1',
+      CliCPF: 'Y237123G',
+      CliNome: 'John Doe',
+      CliEndereco: 'Main St',
+      CliCidade: 'Anytown',
+      CliBairro: 'Central',
+      CliNumero: '123',
+      CliTelefoneCelular: '(123) 456-7890',
+      CliTelefoneFixo: '(098) 765-4321',
+    },
+    {
+      Id: '1',
+      CliCPF: 'Y237123G',
+      CliNome: 'John Doe',
+      CliEndereco: 'Main St',
+      CliCidade: 'Anytown',
+      CliBairro: 'Central',
+      CliNumero: '123',
+      CliTelefoneCelular: '(123) 456-7890',
+      CliTelefoneFixo: '(098) 765-4321',
+    }
+  ]
+
+  constructor(private bsModalRef: BsModalRef) {}
+
+  closeModal() {
+    this.bsModalRef.hide()
+  }
 
   ngOnInit(): void {
     console.log(this.clientConsultation)
