@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Client } from '../../models/client';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -8,7 +8,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './client-consultation.html',
   styleUrl: './client-consultation.css'
 })
-export class ClientConsultation implements OnInit {
+export class ClientConsultation {
   clientConsultation = ''
   clients: Client[] =
   [
@@ -40,9 +40,5 @@ export class ClientConsultation implements OnInit {
 
   closeModal() {
     this.bsModalRef.hide()
-  }
-
-  ngOnInit(): void {
-    console.log(this.clientConsultation)
   }
 }

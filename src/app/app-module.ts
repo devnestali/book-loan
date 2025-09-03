@@ -17,6 +17,7 @@ import { InfoBook } from './components/info-book/info-book';
 import { ClientConsultation } from './modals/client-consultation/client-consultation';
 import { FormsModule } from '@angular/forms';
 import { InfoClient } from './components/info-client/info-client';
+import { BookConsultation } from './modals/book-consultation/book-consultation';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { InfoClient } from './components/info-client/info-client';
     Loan,
     InfoBook,
     ClientConsultation,
-    InfoClient
+    InfoClient,
+    BookConsultation
   ],
   imports: [
     BrowserModule,

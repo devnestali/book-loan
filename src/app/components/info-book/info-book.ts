@@ -9,4 +9,6 @@ import { Book } from '../../models/book';
 })
 export class InfoBook {
   @Input() book?: Book;
+  @Input() showAdd = false
+  @Input() showTrash = false
 }
