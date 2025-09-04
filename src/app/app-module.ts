@@ -18,6 +18,7 @@ import { ClientConsultation } from './modals/client-consultation/client-consulta
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoClient } from './components/info-client/info-client';
 import { BookConsultation } from './modals/book-consultation/book-consultation';
+import { Login } from './pages/login/login';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BookConsultation } from './modals/book-consultation/book-consultation';
     InfoBook,
     ClientConsultation,
     InfoClient,
-    BookConsultation
+    BookConsultation,
+    Login
   ],
   imports: [
     BrowserModule,
