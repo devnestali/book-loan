@@ -1,8 +1,8 @@
 <div class="container mt-5">
-  <h2>Nuevo cliente</h2>
+  <h2>{{ client ? 'Alterar' : 'Nuevo' }} cliente</h2>
   <hr />
 
-  <form>
+  <form [formGroup]="clientForms">
     <div class="row g-3">
       <div class="col-md-4">
         <label for="identification" class="form-label">NIE/DNI</label>
@@ -11,6 +11,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca su número de identificación"
+          formControlName="CliCPF"
         />
       </div>
       <div class="col-md-8">
@@ -20,6 +21,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca su nombre"
+          formControlName="CliNome"
         />
       </div>
       <div class="col-md-6">
@@ -29,6 +31,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca su dirección"
+          formControlName="CliEndereco"
         />
       </div>
 
@@ -39,6 +42,7 @@
           type="number"
           class="form-control"
           placeholder="Introduzca su numero"
+          formControlName="CliNumero"
         />
       </div>
 
@@ -49,6 +53,7 @@
           type="text"
           class="form-control"
           placeholder="Nombre de la ciudad"
+          formControlName="CliCidade"
         />
       </div>
 
@@ -59,6 +64,7 @@
           type="text"
           class="form-control"
           placeholder="Nombre del bario"
+          formControlName="CliBairro"
         />
       </div>
 
@@ -70,6 +76,7 @@
           pattern="^[6789][0-9]{8}$"
           class="form-control"
           placeholder="612345678"
+          formControlName="CliTelefoneFixo"
         />
       </div>
 
@@ -81,11 +88,12 @@
           pattern="^[6789][0-9]{8}$"
           class="form-control"
           placeholder="612345678"
+          formControlName="CliTelefoneCelular"
         />
       </div>
 
       <div class="col-md-12 mt-3">
-        <button class="btn btn-success">Incluir</button>
+        <button class="btn btn-success">{{ client ? 'Alterar' : 'Incluir' }}</button>
       </div>
     </div>
   </form>

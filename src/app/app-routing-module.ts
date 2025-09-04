@@ -21,6 +21,10 @@ const routes: Routes = [
     component: ClientForms
   },
   {
+    path: 'clients/put',
+    component: ClientForms
+  },
+  {
     path: 'books',
     component: Books
   },

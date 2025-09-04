@@ -15,7 +15,7 @@ import { BookForms } from './pages/book-forms/book-forms';
 import { Loan } from './pages/loan/loan';
 import { InfoBook } from './components/info-book/info-book';
 import { ClientConsultation } from './modals/client-consultation/client-consultation';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoClient } from './components/info-client/info-client';
 import { BookConsultation } from './modals/book-consultation/book-consultation';
 
@@ -41,6 +41,7 @@ import { BookConsultation } from './modals/book-consultation/book-consultation';
     AppRoutingModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
