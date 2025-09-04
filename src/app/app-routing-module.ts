@@ -7,6 +7,7 @@ import { Books } from './pages/books/books';
 import { BookForms } from './pages/book-forms/book-forms';
 import { Loan } from './pages/loan/loan';
 import { Login } from './pages/login/login';
+import { Users } from './pages/users/users';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'loan',
     component: Loan
+  },
+  {
+    path: 'users',
+    component: Users
   }
 ];
 

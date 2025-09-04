@@ -19,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoClient } from './components/info-client/info-client';
 import { BookConsultation } from './modals/book-consultation/book-consultation';
 import { Login } from './pages/login/login';
+import { Users } from './pages/users/users';
+import { UserForms } from './pages/user-forms/user-forms';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { Login } from './pages/login/login';
     ClientConsultation,
     InfoClient,
     BookConsultation,
-    Login
+    Login,
+    Users,
+    UserForms
   ],
   imports: [
     BrowserModule,
