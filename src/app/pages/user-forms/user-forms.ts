@@ -23,6 +23,7 @@ export class UserForms implements OnInit {
   ngOnInit(): void {
     this.initializeForm()
     if(this.user) {
+      this.user.password = ''
       this.userForms.setValue(this.user)
     }
   }

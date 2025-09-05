@@ -50,6 +50,10 @@ const routes: Routes = [
   {
     path: 'users/create',
     component: UserForms
+  },
+  {
+    path: 'users/put',
+    component: UserForms
   }
 ];
 

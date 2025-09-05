@@ -18,36 +18,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>
-            <button class="btn btn-sm btn-primary">
-              <i class="fa fa-search"></i>
-            </button>
-          </td>
-          <td>John Doe</td>
-          <td>johndoe@example.com</td>
-          <td>Si</td>
-        </tr>
-        <tr>
-          <td>
-            <button class="btn btn-sm btn-primary">
-              <i class="fa fa-search"></i>
-            </button>
-          </td>
-          <td>John Doe</td>
-          <td>johndoe@example.com</td>
-          <td>Si</td>
-        </tr>
-        <tr>
-          <td>
-            <button class="btn btn-sm btn-primary">
-              <i class="fa fa-search"></i>
-            </button>
-          </td>
-          <td>John Doe</td>
-          <td>johndoe@example.com</td>
-          <td>Si</td>
-        </tr>
+        @for (user of users; track $index) {
+          <tr>
+            <td>
+              <button class="btn btn-sm btn-primary" (click)="changeOrDeleteUser(user)">
+                <i class="fa fa-search"></i>
+              </button>
+            </td>
+            <td>{{user.nome}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.isAdmin ? 'Si' : 'No'}}</td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
