@@ -21,6 +21,7 @@ import { BookConsultation } from './modals/book-consultation/book-consultation';
 import { Login } from './pages/login/login';
 import { Users } from './pages/users/users';
 import { UserForms } from './pages/user-forms/user-forms';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { UserForms } from './pages/user-forms/user-forms';
     ReactiveFormsModule,
   ],
   providers: [
-    provideBrowserGlobalErrorListeners()
+    provideBrowserGlobalErrorListeners(),
+    provideHttpClient()
   ],
   bootstrap: [App]
 })

@@ -18,21 +18,24 @@ export class Users {
       nome: 'John Doe',
       email: 'johndoe@example.com',
       password: undefined,
-      isAdmin: true
+      isAdmin: true,
+      ativo: true
     },
     {
       id: 1,
       nome: 'Josh Doe',
       email: 'johndoe1@example.com',
       password: undefined,
-      isAdmin: false
+      isAdmin: false,
+      ativo: true
     },
     {
       id: 1,
       nome: 'Jack Doe',
       email: 'johndoe2@example.com',
       password: undefined,
-      isAdmin: false
+      isAdmin: false,
+      ativo: true
     },
   ]
 
