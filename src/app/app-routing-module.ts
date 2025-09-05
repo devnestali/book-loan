@@ -8,6 +8,7 @@ import { BookForms } from './pages/book-forms/book-forms';
 import { Loan } from './pages/loan/loan';
 import { Login } from './pages/login/login';
 import { Users } from './pages/users/users';
+import { UserForms } from './pages/user-forms/user-forms';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'users',
     component: Users
+  },
+  {
+    path: 'users/create',
+    component: UserForms
   }
 ];
 
