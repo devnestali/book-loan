@@ -45,14 +45,15 @@ export class UserForms implements OnInit {
   }
 
   includeUser() {
-
-    this.userService.includeUser(this.userForms.value).subscribe(
+   if (this.userForms.valid) {
+     this.userService.includeUser(this.userForms.value).subscribe(
       {
         next: (response: any) => {
           console.log(response)
         }
       }
     )
+   }
   }
 
   changeUser() {

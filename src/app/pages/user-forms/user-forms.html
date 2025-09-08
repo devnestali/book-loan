@@ -10,9 +10,16 @@
           id="name"
           type="text"
           class="form-control"
+          [class.is-invalid]="userForms.get('nome')?.errors && userForms.get('nome')?.touched"
           placeholder="Introduzca el nombre del usuario"
           formControlName="nome"
         />
+        @if (userForms.get('nome')?.hasError('required')) {
+          <div class="invalid-feedback">El nombre es obligatorio.</div>
+        }
+        @if (userForms.get('nome')?.hasError('maxlength')) {
+          <div class="invalid-feedback">El nombre debe tener al máximo 250 caracteres.</div>
+        }
       </div>
 
       <div class="col-md-4">
@@ -21,9 +28,19 @@
           id="email"
           type="email"
           class="form-control"
+          [class.is-invalid]="userForms.get('email')?.errors && userForms.get('email')?.touched"
           placeholder="Introduzca el correo electrónico del usuario"
           formControlName="email"
         />
+        @if (userForms.get('email')?.hasError('required')) {
+          <div class="invalid-feedback">El correo electrónico es obligatorio.</div>
+        }
+        @if (userForms.get('email')?.hasError('maxlength')) {
+          <div class="invalid-feedback">El correo electrónico debe tener al máximo 250 caracteres.</div>
+        }
+        @if (userForms.get('email')?.hasError('email')) {
+          <div class="invalid-feedback">El correo electrónico no es valido.</div>
+        }
       </div>
 
       <div class="col-md-8">
@@ -32,9 +49,19 @@
           id="password"
           type="password"
           class="form-control"
+          [class.is-invalid]="userForms.get('password')?.errors && userForms.get('password')?.touched"
           placeholder="Introduzca la contraseña del usuario"
           formControlName="password"
         />
+        @if (userForms.get('password')?.hasError('required')) {
+          <div class="invalid-feedback">La contraseña es obligatoria.</div>
+        }
+        @if (userForms.get('password')?.hasError('minlength')) {
+          <div class="invalid-feedback">La contraseña debe tener por lo menos 8 caracteres.</div>
+        }
+        @if (userForms.get('password')?.hasError('maxlength')) {
+          <div class="invalid-feedback">La contraseña debe tener al máximo 100 caracteres.</div>
+        }
       </div>
 
       <div class="col-md-4 d-flex flex-column justify-content-end">
@@ -67,6 +94,7 @@
 
       <div class="col-md-12 mt-3">
         <button
+          [disabled]="!userForms.valid"
           class="btn btn-success"
           (click)=" user ? changeUser() : includeUser() "
         >
