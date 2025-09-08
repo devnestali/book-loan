@@ -36,11 +36,17 @@ export class UserForms implements OnInit {
   }
 
   initializeForm() {
+    const passwordValidators = [Validators.minLength(8), Validators.maxLength(100)]
+
+    if(!this.user) {
+      passwordValidators.unshift(Validators.required)
+    }
+
     this.userForms = this.formBuilder.group({
       id: [0, [Validators.required]],
       nome: ['', [Validators.required, Validators.maxLength(250)]],
       email: ['', [Validators.required, Validators.maxLength(250), Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]],
+      password: ['', passwordValidators],
       isAdmin: [false],
       ativo: [true]
     })
