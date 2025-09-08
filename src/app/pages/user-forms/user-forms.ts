@@ -3,6 +3,7 @@ import { User } from '../../models/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-forms',
@@ -17,7 +18,8 @@ export class UserForms implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService,
   ) {
     const currentNavigation = this.router.currentNavigation()
     if(currentNavigation?.extras.state) {
@@ -46,11 +48,26 @@ export class UserForms implements OnInit {
 
   includeUser() {
    if (this.userForms.valid) {
-     this.userService.includeUser(this.userForms.value).subscribe(
+    const ERROR_MESSAGES_TO_ES: Record<string, string> = {
+      "Este e-mail já possui um cadastro.": "Este correo electrónico ya tiene un registro.",
+      "Usuário incluído com sucesso!": "¡Usuario añadido exitosamente!"
+    }
+
+    function translateError(message: string) {
+      return ERROR_MESSAGES_TO_ES[message] || message
+    }
+
+    this.userService.includeUser(this.userForms.value).subscribe(
       {
         next: (response: any) => {
-          console.log(response)
-        }
+          const translatedSuccessMessage = translateError(response.message)
+          this.toastr.success(translatedSuccessMessage)
+          this.userForms.reset()
+        },
+        error: (response: any) => {
+          const translatedErrorMessage = translateError(response.error)
+          this.toastr.error(translatedErrorMessage)
+        },
       }
     )
    }
