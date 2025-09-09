@@ -32,6 +32,7 @@ module.exports = tseslint.config(
       ],
       "@angular-eslint/prefer-standalone": "off",
       "@angular-eslint/prefer-inject": "off",
+      "@typescript-eslint/no-explicit-any": "off"
     },
   },
   {

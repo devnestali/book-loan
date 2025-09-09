@@ -1,15 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
-import { map } from 'rxjs';
+import { BehaviorSubject, map } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Login } from '../models/login';
+import { UserToken } from '../models/userToken';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   baseUrl: string = environment.apiUrl
+  private currentUserSource = new BehaviorSubject<UserToken | null>(null)
+  currentUser$ = this.currentUserSource.asObservable()
 
   constructor(private httpClient: HttpClient) {}
 
@@ -23,9 +26,21 @@ export class UserService {
 
   signIn(login: Login) {
     return this.httpClient.post<any>(this.baseUrl + 'usuario/login', login).pipe(
-      map((response) => {
+      map((response: UserToken) => {
+        if(response) {
+          localStorage.setItem('@BookLoan:user', JSON.stringify(response))
+          this.setCurrentUser(response)
+        }
         return response
       })
     )
+  }
+
+  setCurrentUser(userToken: UserToken) {
+    this.currentUserSource.next(userToken)
+  }
+
+  logOut() {
+    this.currentUserSource.next(null)
   }
 }
