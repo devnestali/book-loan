@@ -96,7 +96,7 @@
         <button
           [disabled]="!userForms.valid"
           class="btn btn-success"
-          (click)=" user ? changeUser() : includeUser() "
+          (click)="user ? changeUser() : includeUser()"
         >
           {{ user ? 'Alterar' : 'Incluir' }}
         </button>

@@ -54,13 +54,13 @@ export class UserForms implements OnInit {
 
   includeUser() {
    if (this.userForms.valid) {
-    const ERROR_MESSAGES_TO_ES: Record<string, string> = {
+    const API_MESSAGES_TO_ES: Record<string, string> = {
       "Este e-mail já possui um cadastro.": "Este correo electrónico ya tiene un registro.",
       "Usuário incluído com sucesso!": "¡Usuario añadido exitosamente!"
     }
 
     function translateError(message: string) {
-      return ERROR_MESSAGES_TO_ES[message] || message
+      return API_MESSAGES_TO_ES[message] || message
     }
 
     this.userService.includeUser(this.userForms.value).subscribe(

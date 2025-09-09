@@ -5,19 +5,58 @@
         <div class="card-body ">
           <h3 class="card-title text-center">Haga su login</h3>
 
-          <form>
+          <form [formGroup]="loginForm">
             <div class="mb-3">
               <label for="email" class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" id="email" />
+              <input
+                type="email"
+                class="form-control"
+                [class.is-invalid]="loginForm.get('email')?.errors && loginForm.get('email')?.touched"
+                id="email"
+                placeholder="Ingrese su correo electrónico"
+                formControlName="email"
+              />
+              @if (loginForm.get('email')?.hasError('required')) {
+                <div class="invalid-feedback">El correo electrónico es obligatorio.</div>
+              }
+              @if (loginForm.get('email')?.hasError('maxlength')) {
+                <div class="invalid-feedback">El correo electrónico debe tener al máximo 250 caracteres.</div>
+              }
+              @if (loginForm.get('email')?.hasError('email')) {
+                <div class="invalid-feedback">El correo electrónico no es válido.</div>
+              }
             </div>
 
             <div class="mb-3">
               <label for="password" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="password" />
+              <input
+                type="password"
+                class="form-control"
+                [class.is-invalid]="loginForm.get('password')?.errors && loginForm.get('password')?.touched"
+                id="password"
+                placeholder="Ingrese su contraseña"
+                formControlName="password"
+              />
+              @if (loginForm.get('password')?.hasError('required')) {
+                <div class="invalid-feedback">La contraseña es obligatoria.</div>
+              }
+              @if (loginForm.get('password')?.hasError('minlength')) {
+                <div class="invalid-feedback">La contraseña debe tener por lo menos 8 caracteres.</div>
+              }
+              @if (loginForm.get('password')?.hasError('maxlength')) {
+                <div class="invalid-feedback">La contraseña debe tener al máximo 100 caracteres.</div>
+              }
             </div>
 
             <div class="text-center">
-              <button type="submit" class="btn btn-success">Entrar</button>
+              <button
+                type="submit"
+                [disabled]="!loginForm.valid"
+                class="btn btn-success"
+                (click)="signIn()"
+              >
+                Entrar
+              </button>
             </div>
           </form>
         </div>

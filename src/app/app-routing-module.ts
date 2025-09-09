@@ -6,14 +6,14 @@ import { ClientForms } from './pages/client-forms/client-forms';
 import { Books } from './pages/books/books';
 import { BookForms } from './pages/book-forms/book-forms';
 import { Loan } from './pages/loan/loan';
-import { Login } from './pages/login/login';
+import { LoginForms } from './pages/login/login';
 import { Users } from './pages/users/users';
 import { UserForms } from './pages/user-forms/user-forms';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: Login
+    component: LoginForms
   },
   {
     path: '',

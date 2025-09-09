@@ -18,7 +18,7 @@ import { ClientConsultation } from './modals/client-consultation/client-consulta
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InfoClient } from './components/info-client/info-client';
 import { BookConsultation } from './modals/book-consultation/book-consultation';
-import { Login } from './pages/login/login';
+import { LoginForms } from './pages/login/login';
 import { Users } from './pages/users/users';
 import { UserForms } from './pages/user-forms/user-forms';
 import { provideHttpClient } from '@angular/common/http';
@@ -40,7 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ClientConsultation,
     InfoClient,
     BookConsultation,
-    Login,
+    LoginForms,
     Users,
     UserForms
   ],
