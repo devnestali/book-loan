@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Login } from '../../models/login';
+import { UserService } from '../../services/user';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,10 @@ export class LoginForms implements OnInit{
   login?: Login
   loginForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService
+  ) {}
 
   initializeForm() {
     this.loginForm = this.formBuilder.group({
@@ -29,6 +33,13 @@ export class LoginForms implements OnInit{
   }
 
   signIn() {
-    console.log(this.loginForm.value)
+    this.userService.signIn(this.loginForm.value).subscribe({
+      next: (response: any) => {
+        console.log(response)
+      },
+      error: (response: any) => {
+        console.log(response.error)
+      },
+    })
   }
 }
