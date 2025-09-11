@@ -34,7 +34,15 @@
               <a href="" class="dropdown-item"><i class="fa fa-gear"></i> Configuraciones</a>
             </li>
             <li>
-              <a href="" class="dropdown-item"><i class="fa fa-sign-out"></i> Salir</a>
+              <a
+                class="dropdown-item"
+                (click)="logOut()"
+                (keydown.enter)="logOut()"
+                (keydown.space)="logOut()"
+                tabindex="0"
+              >
+                <i class="fa fa-sign-out"></i> Salir
+              </a>
             </li>
           </ul>
         </li>

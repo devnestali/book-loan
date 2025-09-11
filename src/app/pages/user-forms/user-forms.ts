@@ -56,7 +56,8 @@ export class UserForms implements OnInit {
    if (this.userForms.valid) {
     const API_MESSAGES_TO_ES: Record<string, string> = {
       "Este e-mail já possui um cadastro.": "Este correo electrónico ya tiene un registro.",
-      "Usuário incluído com sucesso!": "¡Usuario añadido exitosamente!"
+      "Usuário incluído com sucesso!": "¡Usuario añadido exitosamente!",
+      "Você não tem permissão para incluir novos usuários.": "No tienes permiso para añadir nuevos usuarios."
     }
 
     function translateError(message: string) {

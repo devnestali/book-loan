@@ -43,5 +43,6 @@ export class UserService {
 
   logOut() {
     this.currentUserSource.next(null)
+    localStorage.removeItem('@bookLoan:user')
   }
 }
