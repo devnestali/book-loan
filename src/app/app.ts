@@ -18,7 +18,7 @@ export class App implements OnInit{
   }
 
   setCurrentUser() {
-    const userLogged = localStorage.getItem('@BookLoan:user')
+    const userLogged = localStorage.getItem('@bookLoan:user')
     if (!userLogged) {
       return
     }

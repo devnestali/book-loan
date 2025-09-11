@@ -26,9 +26,10 @@ export class UserService {
 
   signIn(login: Login) {
     return this.httpClient.post<any>(this.baseUrl + 'usuario/login', login).pipe(
-      map((response: UserToken) => {
+      map((response: any) => {
         if(response) {
-          localStorage.setItem('@BookLoan:user', JSON.stringify(response))
+          const token: UserToken = { token: response.token }
+          localStorage.setItem('@bookLoan:user', JSON.stringify(token))
           this.setCurrentUser(response)
         }
         return response

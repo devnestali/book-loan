@@ -21,7 +21,7 @@ import { BookConsultation } from './modals/book-consultation/book-consultation';
 import { LoginForms } from './pages/login/login';
 import { Users } from './pages/users/users';
 import { UserForms } from './pages/user-forms/user-forms';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
@@ -55,7 +55,9 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptorsFromDi()
+    ),
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   bootstrap: [App]
