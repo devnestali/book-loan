@@ -3,12 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, ToastrModule.forRoot(), NgxSpinnerModule, ModalModule.forRoot()],
-  exports: [ToastrModule, NgxSpinnerModule, ModalModule]
+  imports: [CommonModule, ToastrModule.forRoot(), NgxSpinnerModule, ModalModule.forRoot(), PaginationModule.forRoot()],
+  exports: [ToastrModule, NgxSpinnerModule, ModalModule, PaginationModule]
 })
 export class SharedModule { }
