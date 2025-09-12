@@ -9,6 +9,7 @@ import { Loan } from './pages/loan/loan';
 import { LoginForms } from './pages/login/login';
 import { Users } from './pages/users/users';
 import { UserForms } from './pages/user-forms/user-forms';
+import { authGuard } from './guards/auth-guard';
 
 const routes: Routes = [
   {
@@ -17,43 +18,53 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: Home
+    component: Home,
+    canActivate: [authGuard]
   },
   {
     path: 'clients',
-    component: Clients
+    component: Clients,
+    canActivate: [authGuard]
   },
   {
     path: 'clients/create',
-    component: ClientForms
+    component: ClientForms,
+    canActivate: [authGuard]
   },
   {
     path: 'clients/put',
-    component: ClientForms
+    component: ClientForms,
+    canActivate: [authGuard]
   },
   {
     path: 'books',
-    component: Books
+    component: Books,
+    canActivate: [authGuard]
   },
   {
     path: 'books/create',
-    component: BookForms
+    component: BookForms,
+    canActivate: [authGuard]
   },
   {
     path: 'loan',
-    component: Loan
+    component: Loan,
+    canActivate: [authGuard]
   },
   {
     path: 'users',
-    component: Users
+    component: Users,
+    canActivate: [authGuard]
   },
   {
     path: 'users/create',
-    component: UserForms
+    component: UserForms,
+    canActivate: [authGuard]
   },
   {
     path: 'users/put',
-    component: UserForms
+    component: UserForms,
+    canActivate: [authGuard]
   }
 ];
 
