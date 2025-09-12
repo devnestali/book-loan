@@ -51,6 +51,18 @@ export class UserService {
     )
   }
 
+  changeUser(user: User) {
+    if(!user.password || user.password.length == 0) {
+      user.password = undefined
+    }
+
+    return this.httpClient.put<any>(this.baseUrl + 'usuario', user).pipe(
+      map((response: any) => {
+        return response
+      })
+    )
+  }
+
   signIn(login: Login) {
     return this.httpClient.post<any>(this.baseUrl + 'usuario/login', login).pipe(
       map((response: any) => {

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user';
 import { ToastrService } from 'ngx-toastr';
+import { translateMessages } from '../../utils/translateMessages';
 
 @Component({
   selector: 'app-user-forms',
@@ -54,25 +55,15 @@ export class UserForms implements OnInit {
 
   includeUser() {
    if (this.userForms.valid) {
-    const API_MESSAGES_TO_ES: Record<string, string> = {
-      "Este e-mail já possui um cadastro.": "Este correo electrónico ya tiene un registro.",
-      "Usuário incluído com sucesso!": "¡Usuario añadido exitosamente!",
-      "Você não tem permissão para incluir novos usuários.": "No tienes permiso para añadir nuevos usuarios."
-    }
-
-    function translateError(message: string) {
-      return API_MESSAGES_TO_ES[message] || message
-    }
-
     this.userService.includeUser(this.userForms.value).subscribe(
       {
         next: (response: any) => {
-          const translatedSuccessMessage = translateError(response.message)
+          const translatedSuccessMessage = translateMessages(response.message)
           this.toastr.success(translatedSuccessMessage)
           this.userForms.reset()
         },
         error: (response: any) => {
-          const translatedErrorMessage = translateError(response.error)
+          const translatedErrorMessage = translateMessages(response.error)
           this.toastr.error(translatedErrorMessage)
         },
       }
@@ -81,7 +72,20 @@ export class UserForms implements OnInit {
   }
 
   changeUser() {
-    console.log('changeUser')
+    if(this.userForms.valid) {
+      this.userService.changeUser(this.userForms.value).subscribe(
+        {
+          next: (response: any) => {
+            const translatedSuccessMessage = translateMessages(response.message)
+            this.toastr.success(translatedSuccessMessage)
+          },
+          error: (response: any) => {
+            const translatedErrorMessage = translateMessages(response.error)
+            this.toastr.error(translatedErrorMessage)
+          }
+        }
+      )
+    }
   }
 
 }

@@ -39,8 +39,8 @@ export class LoginForms implements OnInit{
       next: () => {
         this.toastr.success('Inicio de sesión exitoso.')
       },
-      error: (response: any) => {
-        this.toastr.error(response.error)
+      error: () => {
+        this.toastr.error('Usuario o contraseña invalida.')
       },
     })
   }
