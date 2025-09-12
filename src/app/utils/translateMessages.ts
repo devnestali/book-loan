@@ -1,0 +1,10 @@
+const API_MESSAGES_TO_ES: Record<string, string> = {
+  "Este e-mail já possui um cadastro.": "Este correo electrónico ya tiene un registro.",
+  "Usuário incluído com sucesso!": "¡Usuario añadido exitosamente!",
+  "Você não tem permissão para incluir novos usuários.": "No tienes permiso para añadir nuevos usuarios.",
+  "Usuário alterado com sucesso!": "¡Usuario alterado exitosamente!"
+}
+
+export function translateMessages(message: string) {
+  return API_MESSAGES_TO_ES[message] || message
+}
