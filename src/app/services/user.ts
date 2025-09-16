@@ -10,11 +10,14 @@ import { PaginatedResult } from '../models/pagination';
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
   baseUrl: string = environment.apiUrl
   private currentUserSource = new BehaviorSubject<UserToken | null>(null)
   currentUser$ = this.currentUserSource.asObservable()
   paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>()
+
+  STORAGE_KEY = '@bookLoan:user'
 
   constructor(private httpClient: HttpClient) {}
 
@@ -65,15 +68,25 @@ export class UserService {
 
   signIn(login: Login) {
     return this.httpClient.post<any>(this.baseUrl + 'usuario/login', login).pipe(
-      map((response: any) => {
+      map((response: UserToken) => {
         if(response) {
-          const token: UserToken = { token: response.token }
-          localStorage.setItem('@bookLoan:user', JSON.stringify(token))
+          localStorage.setItem(this.STORAGE_KEY, JSON.stringify(response))
           this.setCurrentUser(response)
         }
         return response
       })
     )
+  }
+
+  isAdmin() {
+    const storedUser = localStorage.getItem(this.STORAGE_KEY)
+
+    if(storedUser) {
+      const user: UserToken = JSON.parse(storedUser)
+      return user.isAdmin
+    }
+
+    return false
   }
 
   setCurrentUser(userToken: UserToken) {
@@ -82,6 +95,6 @@ export class UserService {
 
   logOut() {
     this.currentUserSource.next(null)
-    localStorage.removeItem('@bookLoan:user')
+    localStorage.removeItem(this.STORAGE_KEY)
   }
 }

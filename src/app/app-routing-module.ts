@@ -10,6 +10,7 @@ import { LoginForms } from './pages/login/login';
 import { Users } from './pages/users/users';
 import { UserForms } from './pages/user-forms/user-forms';
 import { authGuard } from './guards/auth-guard';
+import { adminGuard } from './guards/admin-guard';
 
 const routes: Routes = [
   {
@@ -54,17 +55,17 @@ const routes: Routes = [
   {
     path: 'users',
     component: Users,
-    canActivate: [authGuard]
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'users/create',
     component: UserForms,
-    canActivate: [authGuard]
+    canActivate: [authGuard, adminGuard]
   },
   {
     path: 'users/put',
     component: UserForms,
-    canActivate: [authGuard]
+    canActivate: [authGuard, adminGuard]
   }
 ];
 
