@@ -4,7 +4,7 @@ import { UserService } from '../services/user';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs';
 
-export const adminGuard: CanActivateFn = (route, state) => {
+export const adminGuard: CanActivateFn = () => {
   const userService = inject(UserService)
   const toastr = inject(ToastrService)
   const router = inject(Router)
@@ -14,14 +14,14 @@ export const adminGuard: CanActivateFn = (route, state) => {
       if(user) {
         if(!userService.isAdmin()) {
           toastr.error('No tienes permiso para acceder a esta pagina.')
-          router.navigate(['/login'])
+          router.navigate(['/no-authorization'])
           return false
         }
 
         return true
       } else {
         toastr.error('No tienes permiso para acceder a esta pagina.')
-        router.navigate(['/login'])
+        router.navigate(['/no-authorization'])
 
         return false
       }

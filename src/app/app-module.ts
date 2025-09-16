@@ -24,6 +24,7 @@ import { UserForms } from './pages/user-forms/user-forms';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
+import { AuthorizationMessage } from './pages/authorization-message/authorization-message';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
     BookConsultation,
     LoginForms,
     Users,
-    UserForms
+    UserForms,
+    AuthorizationMessage
   ],
   imports: [
     BrowserModule,

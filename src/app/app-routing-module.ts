@@ -11,11 +11,14 @@ import { Users } from './pages/users/users';
 import { UserForms } from './pages/user-forms/user-forms';
 import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
+import { AuthorizationMessage } from './pages/authorization-message/authorization-message';
+import { loginVerifyGuard } from './guards/login-verify-guard';
 
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginForms
+    component: LoginForms,
+    canActivate: [loginVerifyGuard]
   },
   {
     path: '',
@@ -66,6 +69,10 @@ const routes: Routes = [
     path: 'users/put',
     component: UserForms,
     canActivate: [authGuard, adminGuard]
+  },
+  {
+    path: 'no-authorization',
+    component: AuthorizationMessage,
   }
 ];
 

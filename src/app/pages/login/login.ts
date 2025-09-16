@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Login } from '../../models/login';
 import { UserService } from '../../services/user';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginForms implements OnInit{
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {}
 
   initializeForm() {
@@ -38,6 +40,7 @@ export class LoginForms implements OnInit{
     this.userService.signIn(this.loginForm.value).subscribe({
       next: () => {
         this.toastr.success('Inicio de sesión exitoso.')
+        this.router.navigate(['/'])
       },
       error: () => {
         this.toastr.error('Usuario o contraseña invalida.')
