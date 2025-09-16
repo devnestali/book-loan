@@ -68,7 +68,7 @@ const routes: Routes = [
   {
     path: 'users/put',
     component: UserForms,
-    canActivate: [authGuard, adminGuard]
+    canActivate: [authGuard]
   },
   {
     path: 'no-authorization',

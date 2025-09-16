@@ -46,6 +46,14 @@ export class UserService {
     )
   }
 
+  selectUser(id?: number) {
+    return this.httpClient.get<any>(this.baseUrl + `usuario/${id ? id : 0}`).pipe(
+      map((response: User) => {
+        return response
+      })
+    )
+  }
+
   includeUser(user: User) {
     return this.httpClient.post<any>(this.baseUrl + 'usuario/register', user).pipe(
       map((response) => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user';
 import { Router } from '@angular/router';
 import { UserToken } from '../../models/userToken';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -25,6 +26,14 @@ export class Navbar implements OnInit{
     this.userService.currentUser$.subscribe({
       next: (user) => {
         this.userToken = user
+      }
+    })
+  }
+
+  changeUser() {
+    this.userService.selectUser().subscribe({
+      next: (user: User) => {
+        this.router.navigate(['users/put'], { state: { user } })
       }
     })
   }

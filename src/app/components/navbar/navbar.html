@@ -36,7 +36,13 @@
           </a>
 
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li style="cursor: pointer;">
+            <li
+              (click)="changeUser()"
+              (keydown.enter)="changeUser()"
+              (keydown.space)="changeUser()"
+              tabindex="0"
+              style="cursor: pointer;"
+            >
               <span
                 class="dropdown-item"
               >
