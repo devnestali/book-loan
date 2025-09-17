@@ -39,4 +39,12 @@ export class BookService {
         })
       )
   }
+
+  includeBook(book: Book) {
+    return this.httpClient.post<any>(this.baseUrl + 'livro', book).pipe(
+      map((response) => {
+        return response
+      })
+    )
+  }
 }
