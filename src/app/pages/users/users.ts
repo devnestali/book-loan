@@ -14,7 +14,7 @@ export class Users implements OnInit {
   users: User[] = []
   pagination: Pagination | undefined
   pageNumber = 1
-  pageSize = 5
+  pageSize = 10
 
   constructor(
     private router: Router,
