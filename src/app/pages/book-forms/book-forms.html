@@ -2,7 +2,7 @@
   <h2>Nuevo libro</h2>
   <hr />
 
-  <form>
+  <form [formGroup]="bookForms">
     <div class="row g-3">
       <div class="col-md-4">
         <label for="name" class="form-label">Nombre</label>
@@ -11,6 +11,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca el nombre del libro"
+          formControlName="livroNome"
         />
       </div>
       <div class="col-md-8">
@@ -20,6 +21,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca el nombre del autor"
+          formControlName="livroAutor"
         />
       </div>
 
@@ -30,6 +32,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca el nombre de la editora"
+          formControlName="livroEditora"
         />
       </div>
 
@@ -39,6 +42,7 @@
           id="publicationYear"
           type="date"
           class="form-control"
+          formControlName="livroAnoPublicacao"
         />
       </div>
 
@@ -49,11 +53,18 @@
           type="text"
           class="form-control"
           placeholder="Edición"
+          formControlName="livroEdicao"
         />
       </div>
 
       <div class="col-md-12 mt-3">
-        <button class="btn btn-success">Incluir</button>
+        <button
+          class="btn btn-success"
+          [disabled]="!bookForms.valid"
+          (click)="includeBook()"
+        >
+          Incluir
+        </button>
       </div>
     </div>
   </form>
