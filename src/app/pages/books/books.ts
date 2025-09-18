@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
 import { BookService } from '../../services/book';
 import { Pagination } from '../../models/pagination';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books',
@@ -15,7 +16,10 @@ export class Books implements OnInit{
   pageNumber = 1
   pageSize = 10
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.selectBooks()
@@ -37,6 +41,10 @@ export class Books implements OnInit{
       this.pageNumber = event.page
       this.selectBooks()
     }
+  }
+
+  changeBook(book: Book) {
+    this.router.navigate(['/books/put'], { state: { book } })
   }
 
 }

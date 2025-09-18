@@ -5,6 +5,7 @@ import { BookService } from '../../services/book';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { translateMessages } from '../../utils/translateMessages';
+import { formateDate } from '../../utils/formateDate';
 
 @Component({
   selector: 'app-book-forms',
@@ -32,11 +33,15 @@ export class BookForms implements OnInit{
     this.initializeForm()
     if(this.book) {
       this.bookForms.setValue(this.book)
+      const yearOfPublicationFormatted = formateDate(this.book.livroAnoPublicacao)
+
+      this.bookForms.controls['livroAnoPublicacao'].setValue(yearOfPublicationFormatted)
     }
   }
 
   initializeForm() {
     this.bookForms = this.formBuilder.group({
+      id: [0, Validators.required],
       livroNome: ['', [Validators.required, Validators.maxLength(50)]],
       livroAutor: ['', [Validators.required, Validators.maxLength(200)]],
       livroEditora: ['', [Validators.required, Validators.maxLength(50)]],
@@ -53,7 +58,23 @@ export class BookForms implements OnInit{
           this.toastr.success(translatedSuccessMessage)
         },
         error: (response) => {
-          this.toastr.error(response.error)
+          const translatedErrorMessage = translateMessages(response.error)
+          this.toastr.error(translatedErrorMessage)
+        }
+      })
+    }
+  }
+
+  changeBook() {
+    if(this.bookForms.valid) {
+      this.bookService.changeBook(this.bookForms.value).subscribe({
+        next: (response) => {
+          const translatedSuccessMessage = translateMessages(response.message)
+          this.toastr.success(translatedSuccessMessage)
+        },
+        error: (response) => {
+          const translatedErrorMessage = translateMessages(response.error)
+          this.toastr.error(translatedErrorMessage)
         }
       })
     }

@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  <h2>Nuevo libro</h2>
+  <h2>{{ book ? 'Alterar libro' : 'Nuevo libro' }}</h2>
   <hr />
 
   <form [formGroup]="bookForms">
@@ -126,9 +126,9 @@
         <button
           class="btn btn-success"
           [disabled]="!bookForms.valid"
-          (click)="includeBook()"
+          (click)="book ? changeBook() : includeBook()"
         >
-          Incluir
+          {{ book ? 'Alterar' : 'Incluir' }}
         </button>
       </div>
     </div>

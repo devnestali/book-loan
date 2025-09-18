@@ -51,6 +51,11 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'books/put',
+    component: BookForms,
+    canActivate: [authGuard]
+  },
+  {
     path: 'loan',
     component: Loan,
     canActivate: [authGuard]

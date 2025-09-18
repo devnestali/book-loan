@@ -47,4 +47,12 @@ export class BookService {
       })
     )
   }
+
+  changeBook(book: Book) {
+    return this.httpClient.put<any>(this.baseUrl + 'livro', book).pipe(
+      map((response) => {
+        return response
+      })
+    )
+  }
 }
