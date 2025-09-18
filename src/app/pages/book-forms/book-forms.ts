@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookService } from '../../services/book';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { translateMessages } from '../../utils/translateMessages';
 
 @Component({
   selector: 'app-book-forms',
@@ -48,10 +49,11 @@ export class BookForms implements OnInit{
     if(this.bookForms.valid) {
       this.bookService.includeBook(this.bookForms.value).subscribe({
         next: (response) => {
-          console.log(response)
+          const translatedSuccessMessage = translateMessages(response.message)
+          this.toastr.success(translatedSuccessMessage)
         },
-        error: (err) => {
-          console.log(err)
+        error: (response) => {
+          this.toastr.error(response.error)
         }
       })
     }

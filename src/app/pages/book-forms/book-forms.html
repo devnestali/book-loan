@@ -12,7 +12,21 @@
           class="form-control"
           placeholder="Introduzca el nombre del libro"
           formControlName="livroNome"
+          [class.is-invalid]="
+            bookForms.get('livroNome')?.errors &&
+            bookForms.get('livroNome')?.touched
+          "
         />
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroNome')?.hasError('required')) {
+            El nombre del libro es obligatorio.
+          }
+        </div>
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroNome')?.hasError('maxlength')) {
+            El nombre del libro no puede tener mas que 50 caracteres.
+          }
+        </div>
       </div>
       <div class="col-md-8">
         <label for="autor" class="form-label">Autor</label>
@@ -22,7 +36,21 @@
           class="form-control"
           placeholder="Introduzca el nombre del autor"
           formControlName="livroAutor"
+          [class.is-invalid]="
+            bookForms.get('livroAutor')?.errors &&
+            bookForms.get('livroAutor')?.touched
+          "
         />
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroAutor')?.hasError('required')) {
+            El nombre del autor es obligatorio.
+          }
+        </div>
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroAutor')?.hasError('maxlength')) {
+            El nombre del autor no puede tener mas que 200 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-6">
@@ -33,7 +61,21 @@
           class="form-control"
           placeholder="Introduzca el nombre de la editora"
           formControlName="livroEditora"
+          [class.is-invalid]="
+            bookForms.get('livroEditora')?.errors &&
+            bookForms.get('livroEditora')?.touched
+          "
         />
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroEditora')?.hasError('required')) {
+            La editora del libro es obligatoria.
+          }
+        </div>
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroEditora')?.hasError('maxlength')) {
+            La editora del libro no puede tener mas que 50 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-4">
@@ -43,7 +85,16 @@
           type="date"
           class="form-control"
           formControlName="livroAnoPublicacao"
+          [class.is-invalid]="
+            bookForms.get('livroAnoPublicacao')?.errors &&
+            bookForms.get('livroAnoPublicacao')?.touched
+          "
         />
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroAnoPublicacao')?.hasError('required')) {
+            La fecha de publicación es obligatoria.
+          }
+        </div>
       </div>
 
       <div class="col-md-2">
@@ -54,7 +105,21 @@
           class="form-control"
           placeholder="Edición"
           formControlName="livroEdicao"
+          [class.is-invalid]="
+            bookForms.get('livroEdicao')?.errors &&
+            bookForms.get('livroEdicao')?.touched
+          "
         />
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroEdicao')?.hasError('required')) {
+            La edición del libro es obligatoria.
+          }
+        </div>
+        <div class="invalid-feedback">
+          @if (bookForms.get('livroEdicao')?.hasError('maxlength')) {
+            La edición del libro no puede tener mas que 50 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-12 mt-3">
