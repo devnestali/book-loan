@@ -10,31 +10,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ClientConsultation {
   clientConsultation = ''
-  clients: Client[] =
-  [
-    {
-      Id: '1',
-      CliCPF: 'Y237123G',
-      CliNome: 'John Doe',
-      CliEndereco: 'Main St',
-      CliCidade: 'Anytown',
-      CliBairro: 'Central',
-      CliNumero: '123',
-      CliTelefoneCelular: '(123) 456-7890',
-      CliTelefoneFixo: '(098) 765-4321',
-    },
-    {
-      Id: '1',
-      CliCPF: 'Y237123G',
-      CliNome: 'John Doe',
-      CliEndereco: 'Main St',
-      CliCidade: 'Anytown',
-      CliBairro: 'Central',
-      CliNumero: '123',
-      CliTelefoneCelular: '(123) 456-7890',
-      CliTelefoneFixo: '(098) 765-4321',
-    }
-  ]
+  clients: Client[] = []
 
   constructor(private bsModalRef: BsModalRef) {}
 

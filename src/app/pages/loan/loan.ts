@@ -33,14 +33,14 @@ export class Loan {
 
   client: Client = {
     Id: '1',
-    CliCPF: 'Y237123G',
-    CliNome: 'John Doe',
-    CliEndereco: 'Main St',
-    CliCidade: 'Anytown',
-    CliBairro: 'Central',
-    CliNumero: '123',
-    CliTelefoneCelular: '(123) 456-7890',
-    CliTelefoneFixo: '(098) 765-4321',
+    cliCPF: 'Y237123G',
+    cliNome: 'John Doe',
+    cliEndereco: 'Main St',
+    cliCidade: 'Anytown',
+    cliBairro: 'Central',
+    cliNumero: '123',
+    cliTelefoneCelular: '(123) 456-7890',
+    cliTelefoneFixo: '(098) 765-4321',
   }
 
 

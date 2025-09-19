@@ -1,20 +1,20 @@
 <div class="card mb-2">
   <div class="card-body">
-    <h5>{{client?.CliNome}}</h5>
+    <h5>{{client?.cliNome}}</h5>
     <p>
-      <b>NIE/DNI: </b> {{client?.CliCPF}} <br />
+      <b>NIE/DNI: </b> {{client?.cliCPF}} <br />
       <b>Ubicación: </b>
       {{
-        client?.CliEndereco +
+        client?.cliEndereco +
         ', barrio ' +
-        client?.CliBairro +
+        client?.cliBairro +
         ', ciudad ' +
-        client?.CliCidade +
+        client?.cliCidade +
         ', numero ' +
-        client?.CliNumero
+        client?.cliNumero
       }} <br />
-      <b>Teléfono Móvil: </b> {{client?.CliTelefoneCelular}}<br />
-      <b>Teléfono Fijo: </b> {{client?.CliTelefoneFixo}}<br />
+      <b>Teléfono Móvil: </b> {{client?.cliTelefoneCelular}}<br />
+      <b>Teléfono Fijo: </b> {{client?.cliTelefoneFixo}}<br />
     </p>
     <div class="text-end">
       @if(showTrash) {

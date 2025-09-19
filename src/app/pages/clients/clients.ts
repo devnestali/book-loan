@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Client } from '../../models/client';
 import { Router } from '@angular/router';
+import { ClientService } from '../../services/client-service';
+import { Pagination } from '../../models/pagination';
 
 @Component({
   selector: 'app-clients',
@@ -8,44 +10,31 @@ import { Router } from '@angular/router';
   templateUrl: './clients.html',
   styleUrl: './clients.css'
 })
-export class Clients {
-  constructor(private router: Router) {}
+export class Clients implements OnInit{
+  clients: Client[] = []
+  pagination: Pagination | undefined
+  pageNumber = 1
+  pageSize = 10
 
-  clients: Client[] = [
-    {
-      Id: '1',
-      CliCPF: 'Y237123G',
-      CliNome: 'John Doe',
-      CliEndereco: 'Main St',
-      CliCidade: 'Anytown',
-      CliBairro: 'Central',
-      CliNumero: '123',
-      CliTelefoneCelular: '(123) 456-7890',
-      CliTelefoneFixo: '(098) 765-4321',
-    },
-    {
-      Id: '1',
-      CliCPF: 'Y237123G',
-      CliNome: 'Johane Doe',
-      CliEndereco: 'Main St',
-      CliCidade: 'Anytown',
-      CliBairro: 'Central',
-      CliNumero: '123',
-      CliTelefoneCelular: '(123) 456-7890',
-      CliTelefoneFixo: '(098) 765-4321',
-    },
-    {
-      Id: '1',
-      CliCPF: 'Y237123G',
-      CliNome: 'Johnny Doe',
-      CliEndereco: 'Main St',
-      CliCidade: 'Anytown',
-      CliBairro: 'Central',
-      CliNumero: '123',
-      CliTelefoneCelular: '(123) 456-7890',
-      CliTelefoneFixo: '(098) 765-4321',
-    },
-  ]
+  constructor(
+    private router: Router,
+    private clientService: ClientService,
+  ) {}
+
+  ngOnInit(): void {
+    this.selectClient()
+  }
+
+  selectClient() {
+    this.clientService.selectClients(this.pageNumber, this.pageSize).subscribe({
+      next: (response) => {
+        if(response.result && response.pagination) {
+          this.clients = response.result
+          this.pagination = response.pagination
+        }
+      }
+    })
+  }
 
   changeOrDeleteClient(client: Client) {
     this.router.navigate(['clients/put'], { state: { client } })
