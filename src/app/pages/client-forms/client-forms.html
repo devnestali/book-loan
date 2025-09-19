@@ -11,7 +11,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca su número de identificación"
-          formControlName="CliCPF"
+          formControlName="cliCPF"
         />
       </div>
       <div class="col-md-8">
@@ -21,7 +21,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca su nombre"
-          formControlName="CliNome"
+          formControlName="cliNome"
         />
       </div>
       <div class="col-md-6">
@@ -31,7 +31,7 @@
           type="text"
           class="form-control"
           placeholder="Introduzca su dirección"
-          formControlName="CliEndereco"
+          formControlName="cliEndereco"
         />
       </div>
 
@@ -39,10 +39,10 @@
         <label for="number" class="form-label">Numero</label>
         <input
           id="number"
-          type="number"
+          type="text"
           class="form-control"
           placeholder="Introduzca su numero"
-          formControlName="CliNumero"
+          formControlName="cliNumero"
         />
       </div>
 
@@ -53,7 +53,7 @@
           type="text"
           class="form-control"
           placeholder="Nombre de la ciudad"
-          formControlName="CliCidade"
+          formControlName="cliCidade"
         />
       </div>
 
@@ -64,7 +64,7 @@
           type="text"
           class="form-control"
           placeholder="Nombre del bario"
-          formControlName="CliBairro"
+          formControlName="cliBairro"
         />
       </div>
 
@@ -76,7 +76,7 @@
           pattern="^[6789][0-9]{8}$"
           class="form-control"
           placeholder="612345678"
-          formControlName="CliTelefoneFixo"
+          formControlName="cliTelefoneFixo"
         />
       </div>
 
@@ -88,12 +88,18 @@
           pattern="^[6789][0-9]{8}$"
           class="form-control"
           placeholder="612345678"
-          formControlName="CliTelefoneCelular"
+          formControlName="cliTelefoneCelular"
         />
       </div>
 
       <div class="col-md-12 mt-3">
-        <button class="btn btn-success">{{ client ? 'Alterar' : 'Incluir' }}</button>
+        <button
+          [disabled]="!clientForms.valid"
+          class="btn btn-success"
+          (click)="client ? changeClient() : includeClient()"
+        >
+          {{ client ? 'Alterar' : 'Incluir' }}
+        </button>
       </div>
     </div>
   </form>
