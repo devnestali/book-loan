@@ -32,7 +32,7 @@ export class Loan {
   ];
 
   client: Client = {
-    Id: '1',
+    id: '1',
     cliCPF: 'Y237123G',
     cliNome: 'John Doe',
     cliEndereco: 'Main St',

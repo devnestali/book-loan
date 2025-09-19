@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { Pagination } from '../../models/pagination';
-import { UserService } from '../../services/user';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-users',

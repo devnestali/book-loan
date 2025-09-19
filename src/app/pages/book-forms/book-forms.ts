@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BookService } from '../../services/book';
+import { BookService } from '../../services/book-service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { translateMessages } from '../../utils/translateMessages';

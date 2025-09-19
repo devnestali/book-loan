@@ -5,7 +5,10 @@ const API_MESSAGES_TO_ES: Record<string, string> = {
   "Usuário alterado com sucesso!": "¡Usuario alterado exitosamente!",
   "Você não tem permissão para definir você mesmo como administrador.": "No tienes permiso para configurarte como administrador.",
   "Livro incluído com sucesso!": "¡Libro incluido exitosamente!",
-  "Livro alterado com sucesso!": "¡Libro alterado exitosamente!"
+  "Livro alterado com sucesso!": "¡Libro alterado exitosamente!",
+  "Já existe um cliente cadastrado com esse CPF": "Ya hay un cliente registrado con este NIE/DNI.",
+  "Cliente incluído com sucesso!": "!Cliente añadido exitosamente!",
+  "Cliente alterado com sucesso!": "¡Cliente alterado exitosamente!"
 }
 
 export function translateMessages(message: string) {
