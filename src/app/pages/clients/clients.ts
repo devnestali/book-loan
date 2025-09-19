@@ -22,10 +22,10 @@ export class Clients implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.selectClient()
+    this.selectClients()
   }
 
-  selectClient() {
+  selectClients() {
     this.clientService.selectClients(this.pageNumber, this.pageSize).subscribe({
       next: (response) => {
         if(response.result && response.pagination) {
@@ -38,5 +38,12 @@ export class Clients implements OnInit{
 
   changeOrDeleteClient(client: Client) {
     this.router.navigate(['clients/put'], { state: { client } })
+  }
+
+  pageChanged(event: any) {
+    if (this.pageNumber !== event.page) {
+      this.pageNumber = event.page
+      this.selectClients()
+    }
   }
 }
