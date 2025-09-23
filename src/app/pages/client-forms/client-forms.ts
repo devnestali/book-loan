@@ -47,8 +47,8 @@ export class ClientForms implements OnInit {
         cliCidade: ['', [Validators.required, Validators.maxLength(50)]],
         cliBairro: ['', [Validators.required, Validators.maxLength(50)]],
         cliNumero: ['', [Validators.required, Validators.maxLength(50)]],
-        cliTelefoneCelular: ['', [Validators.required, Validators.maxLength(11)]],
-        cliTelefoneFixo: ['', [Validators.required, Validators.maxLength(10)]],
+        cliTelefoneCelular: ['', [Validators.required, Validators.minLength(11), Validators.maxLength(11)]],
+        cliTelefoneFixo: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       }
     )
   }

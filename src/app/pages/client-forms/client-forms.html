@@ -10,9 +10,21 @@
           id="identification"
           type="text"
           class="form-control"
+          [class.is-invalid]="clientForms.get('cliCPF')?.errors && clientForms.get('cliCPF')?.touched"
           placeholder="Introduzca su número de identificación"
           formControlName="cliCPF"
         />
+        <div class="invalid-feedback">
+          @if (clientForms.get('cliCPF')?.hasError('required')) {
+            El numero del NIE/DNI es obligatorio.
+          }
+          @if (clientForms.get('cliCPF')?.hasError('minlength')) {
+            El numero del NIE/DNI debe tener mas de 11 caracteres.
+          }
+          @if (clientForms.get('cliCPF')?.hasError('maxlength')) {
+            El numero del NIE/DNI debe tener menos de 11 caracteres.
+          }
+        </div>
       </div>
       <div class="col-md-8">
         <label for="name" class="form-label">Nombre</label>
@@ -20,9 +32,18 @@
           id="name"
           type="text"
           class="form-control"
+          [class.is-invalid]="clientForms.get('cliNome')?.errors && clientForms.get('cliNome')?.touched"
           placeholder="Introduzca su nombre"
           formControlName="cliNome"
         />
+        <div class="invalid-feedback">
+          @if (clientForms.get('cliNome')?.hasError('required')) {
+            El nombre del cliente es obligatorio.
+          }
+          @if (clientForms.get('cliNome')?.hasError('maxlength')) {
+            El nombre del cliente debe tener hasta 200 caracteres.
+          }
+        </div>
       </div>
       <div class="col-md-6">
         <label for="address" class="form-label">Dirección</label>
@@ -30,9 +51,18 @@
           id="address"
           type="text"
           class="form-control"
+          [class.is-invalid]="clientForms.get('cliEndereco')?.errors && clientForms.get('cliEndereco')?.touched"
           placeholder="Introduzca su dirección"
           formControlName="cliEndereco"
         />
+        <div class="invalid-feedback">
+          @if (clientForms.get('cliEndereco')?.hasError('required')) {
+            La ubicación del cliente es obligatorio.
+          }
+          @if (clientForms.get('cliEndereco')?.hasError('maxlength')) {
+            La ubicación del cliente debe tener hasta 50 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-2">
@@ -41,9 +71,18 @@
           id="number"
           type="text"
           class="form-control"
+          [class.is-invalid]="clientForms.get('cliNumero')?.errors && clientForms.get('cliNumero')?.touched"
           placeholder="Introduzca su numero"
           formControlName="cliNumero"
         />
+        <div class="invalid-feedback">
+          @if (clientForms.get('cliNumero')?.hasError('required')) {
+            El numero es obligatorio.
+          }
+          @if (clientForms.get('cliNumero')?.hasError('maxlength')) {
+            El numero debe tener hasta 50 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-4">
@@ -52,20 +91,38 @@
           id="city"
           type="text"
           class="form-control"
+          [class.is-invalid]="clientForms.get('cliCidade')?.errors && clientForms.get('cliCidade')?.touched"
           placeholder="Nombre de la ciudad"
           formControlName="cliCidade"
         />
+        <div class="invalid-feedback">
+          @if (clientForms.get('cliCidade')?.hasError('required')) {
+            La ciudad es obligatoria.
+          }
+          @if (clientForms.get('cliCidade')?.hasError('maxlength')) {
+            La ciudad debe tener hasta 50 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-4">
-        <label for="neighborhood" class="form-label">Bario</label>
+        <label for="neighborhood" class="form-label">Barrio</label>
         <input
           id="neighborhood"
           type="text"
           class="form-control"
+          [class.is-invalid]="clientForms.get('cliBairro')?.errors && clientForms.get('cliBairro')?.touched"
           placeholder="Nombre del bario"
           formControlName="cliBairro"
         />
+        <div class="invalid-feedback">
+          @if (clientForms.get('cliBairro')?.hasError('required')) {
+            El barrio es obligatorio.
+          }
+          @if (clientForms.get('cliBairro')?.hasError('maxlength')) {
+            El barrio debe tener hasta 50 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-4">
@@ -75,9 +132,21 @@
           type="tel"
           pattern="^[6789][0-9]{8}$"
           class="form-control"
+          [class.is-invalid]="clientForms.get('cliTelefoneFixo')?.errors && clientForms.get('cliTelefoneFixo')?.touched"
           placeholder="612345678"
           formControlName="cliTelefoneFixo"
         />
+         <div class="invalid-feedback">
+          @if (clientForms.get('cliTelefoneFixo')?.hasError('required')) {
+            El teléfono fijo es obligatorio.
+          }
+          @if (clientForms.get('cliTelefoneFixo')?.hasError('minlength')) {
+            El teléfono fijo debe tener mas de 10 caracteres.
+          }
+          @if (clientForms.get('cliTelefoneFixo')?.hasError('maxlength')) {
+            El teléfono fijo debe tener menos de 10 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-4">
@@ -87,9 +156,21 @@
           type="tel"
           pattern="^[6789][0-9]{8}$"
           class="form-control"
+          [class.is-invalid]="clientForms.get('cliTelefoneCelular')?.errors && clientForms.get('cliTelefoneCelular')?.touched"
           placeholder="612345678"
           formControlName="cliTelefoneCelular"
         />
+         <div class="invalid-feedback">
+          @if (clientForms.get('cliTelefoneCelular')?.hasError('required')) {
+            El teléfono móvil es obligatorio.
+          }
+          @if (clientForms.get('cliTelefoneCelular')?.hasError('minlength')) {
+            El teléfono móvil debe tener mas de 11 caracteres.
+          }
+          @if (clientForms.get('cliTelefoneCelular')?.hasError('maxlength')) {
+            El teléfono móvil debe tener menos de 11 caracteres.
+          }
+        </div>
       </div>
 
       <div class="col-md-12 mt-3">
