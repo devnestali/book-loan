@@ -25,6 +25,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
 import { AuthorizationMessage } from './pages/authorization-message/authorization-message';
+import { LoadingInterceptor } from './interceptors/loading-interceptor';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { AuthorizationMessage } from './pages/authorization-message/authorizatio
     provideHttpClient(
       withInterceptorsFromDi()
     ),
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [App]
 })
