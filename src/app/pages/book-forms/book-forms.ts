@@ -57,10 +57,6 @@ export class BookForms implements OnInit{
           const translatedSuccessMessage = translateMessages(response.message)
           this.toastr.success(translatedSuccessMessage)
         },
-        error: (response) => {
-          const translatedErrorMessage = translateMessages(response.error)
-          this.toastr.error(translatedErrorMessage)
-        }
       })
     }
   }
@@ -71,10 +67,6 @@ export class BookForms implements OnInit{
         next: (response) => {
           const translatedSuccessMessage = translateMessages(response.message)
           this.toastr.success(translatedSuccessMessage)
-        },
-        error: (response) => {
-          const translatedErrorMessage = translateMessages(response.error)
-          this.toastr.error(translatedErrorMessage)
         }
       })
     }

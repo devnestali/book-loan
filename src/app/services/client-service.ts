@@ -25,7 +25,6 @@ export class ClientService {
       .pipe(
         map((response) => {
           if(response.body) {
-            console.log(response)
             this.paginatedResult.result = response.body
           }
 

@@ -59,10 +59,6 @@ export class ClientForms implements OnInit {
         next: (response) => {
           const translatedSuccessResponse = translateMessages(response.message)
           this.toastr.success(translatedSuccessResponse)
-        },
-        error: (response) => {
-          const translatedErrorResponse = translateMessages(response.error)
-          this.toastr.error(translatedErrorResponse)
         }
       })
     }
@@ -74,10 +70,6 @@ export class ClientForms implements OnInit {
         next: (response) => {
           const translatedSuccessResponse = translateMessages(response.message)
           this.toastr.success(translatedSuccessResponse)
-        },
-        error: (response) => {
-          const translatedErrorResponse = translateMessages(response.error)
-          this.toastr.error(translatedErrorResponse)
         }
       })
     }

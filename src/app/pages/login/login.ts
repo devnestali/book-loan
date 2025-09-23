@@ -41,10 +41,7 @@ export class LoginForms implements OnInit{
       next: () => {
         this.toastr.success('Inicio de sesión exitoso.')
         this.router.navigate(['/'])
-      },
-      error: () => {
-        this.toastr.error('Usuario o contraseña invalida.')
-      },
+      }
     })
   }
 }

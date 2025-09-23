@@ -61,11 +61,7 @@ export class UserForms implements OnInit {
           const translatedSuccessMessage = translateMessages(response.message)
           this.toastr.success(translatedSuccessMessage)
           this.userForms.reset()
-        },
-        error: (response: any) => {
-          const translatedErrorMessage = translateMessages(response.error)
-          this.toastr.error(translatedErrorMessage)
-        },
+        }
       }
     )
    }
@@ -78,10 +74,6 @@ export class UserForms implements OnInit {
           next: (response: any) => {
             const translatedSuccessMessage = translateMessages(response.message)
             this.toastr.success(translatedSuccessMessage)
-          },
-          error: (response: any) => {
-            const translatedErrorMessage = translateMessages(response.error)
-            this.toastr.error(translatedErrorMessage)
           }
         }
       )
