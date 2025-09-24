@@ -54,10 +54,8 @@ export class ClientConsultation {
     this.bsModalRef.hide()
   }
 
-  addClient(clientId: number) {
-    this.onClose.emit({
-      clientId
-    })
+  addClient(client: Client) {
+    this.onClose.emit(client)
 
     this.closeModal()
   }

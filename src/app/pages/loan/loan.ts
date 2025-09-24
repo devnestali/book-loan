@@ -5,6 +5,7 @@ import { ClientConsultation } from '../../modals/client-consultation/client-cons
 import { Client } from '../../models/client';
 import { BookConsultation } from '../../modals/book-consultation/book-consultation';
 import { ClientService } from '../../services/client-service';
+import { BookService } from '../../services/book-service';
 
 @Component({
   selector: 'app-loan',
@@ -24,7 +25,8 @@ export class Loan {
 
   constructor(
     private modalService: BsModalService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private bookService: BookService
   ) {}
 
   openClientConsultationModal() {
@@ -34,14 +36,8 @@ export class Loan {
 
     this.bsModalRef = this.modalService.show(ClientConsultation, { initialState: initialValues });
 
-    this.bsModalRef?.content.onClose.subscribe((result: any) => {
-      const clientId = result.clientId
-
-      this.clientService.selectClientById(clientId).subscribe({
-        next: (response: Client) => {
-          this.client = response
-        }
-      })
+    this.bsModalRef?.content.onClose.subscribe((result: Client) => {
+      this.client = result
     })
   }
 
@@ -50,10 +46,18 @@ export class Loan {
       bookConsultation: this.bookConsultation
     }
 
-    this.modalService.show(BookConsultation, { initialState: initialValues })
+    this.bsModalRef = this.modalService.show(BookConsultation, { initialState: initialValues })
+
+    this.bsModalRef.content.onClose.subscribe((result: Book) => {
+      this.books.push(result)
+    })
   }
 
   removeClient() {
     this.client = undefined
+  }
+
+  removeBook() {
+    this.books.shift()
   }
 }
