@@ -20,7 +20,14 @@
           <i class="fa fa-search"></i>
         </button>
       </div>
-      <app-info-client [client]="client" [showTrash]="true"></app-info-client>
+      @if (client) {
+        <app-info-client
+          [client]="client"
+          [showTrash]="true"
+          (clickButton)="removeClient()"
+        >
+        </app-info-client>
+      }
     </div>
 
     <div class="col-md-6 mb-4">

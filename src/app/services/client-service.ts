@@ -46,6 +46,14 @@ export class ClientService {
     )
   }
 
+  selectClientById(id: number) {
+    return this.httpClient.get<any>(this.baseUrl + 'cliente/' + id).pipe(
+      map((response) => {
+        return response
+      })
+    )
+  }
+
   changeClient(client: Client) {
     return this.httpClient.put<any>(this.baseUrl + 'cliente', client).pipe(
       map((response) => {

@@ -15,6 +15,7 @@
         <app-info-client
           [client]="client"
           [showAdd]="true"
+          (clickButton)="addClient(client.id)"
         ></app-info-client>
       }
     </div>

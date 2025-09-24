@@ -18,10 +18,10 @@
     </p>
     <div class="text-end">
       @if(showTrash) {
-        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+        <button (click)="addOrRemove()" class="btn btn-danger"><i class="fa fa-trash"></i></button>
       }
       @if(showAdd) {
-        <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+        <button (click)="addOrRemove()" class="btn btn-success"><i class="fa fa-plus"></i></button>
       }
     </div>
   </div>

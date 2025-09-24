@@ -33,7 +33,7 @@ export class BookForms implements OnInit{
     this.initializeForm()
     if(this.book) {
       this.bookForms.setValue(this.book)
-      const yearOfPublicationFormatted = formateDate(this.book.livroAnoPublicacao)
+      const yearOfPublicationFormatted = formateDate(new Date(this.book.livroAnoPublicacao))
 
       this.bookForms.controls['livroAnoPublicacao'].setValue(yearOfPublicationFormatted)
     }

@@ -4,6 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClientConsultation } from '../../modals/client-consultation/client-consultation';
 import { Client } from '../../models/client';
 import { BookConsultation } from '../../modals/book-consultation/book-consultation';
+import { ClientService } from '../../services/client-service';
 
 @Component({
   selector: 'app-loan',
@@ -12,50 +13,36 @@ import { BookConsultation } from '../../modals/book-consultation/book-consultati
   styleUrl: './loan.css'
 })
 export class Loan {
-  books: Book[] = [
-    {
-      Id: 1,
-      livroAnoPublicacao: new Date(2025, 4, 20),
-      livroAutor: 'Robert C. Martin',
-      livroEdicao: '1',
-      livroNome: 'Clean Code',
-      livroEditora: 'ANAXIS'
-    },
-    {
-      Id: 2,
-      livroAnoPublicacao: new Date(2025, 4, 20),
-      livroAutor: 'Linus Torvalds',
-      livroEdicao: '1',
-      livroNome: 'Microservices Architecture',
-      livroEditora: 'ANAXIS'
-    },
-  ];
+  books: Book[] = [];
 
-  client: Client = {
-    id: '1',
-    cliCPF: 'Y237123G',
-    cliNome: 'John Doe',
-    cliEndereco: 'Main St',
-    cliCidade: 'Anytown',
-    cliBairro: 'Central',
-    cliNumero: '123',
-    cliTelefoneCelular: '(123) 456-7890',
-    cliTelefoneFixo: '(098) 765-4321',
-  }
+  client?: Client
 
 
   bsModalRef?: BsModalRef;
   clientConsultation = '';
   bookConsultation = '';
 
-  constructor(private modalService: BsModalService) {}
+  constructor(
+    private modalService: BsModalService,
+    private clientService: ClientService
+  ) {}
 
   openClientConsultationModal() {
     const initialValues = {
       clientConsultation: this.clientConsultation,
     }
 
-    this.modalService.show(ClientConsultation, { initialState: initialValues });
+    this.bsModalRef = this.modalService.show(ClientConsultation, { initialState: initialValues });
+
+    this.bsModalRef?.content.onClose.subscribe((result: any) => {
+      const clientId = result.clientId
+
+      this.clientService.selectClientById(clientId).subscribe({
+        next: (response: Client) => {
+          this.client = response
+        }
+      })
+    })
   }
 
   openBookConsultationModal() {
@@ -64,5 +51,9 @@ export class Loan {
     }
 
     this.modalService.show(BookConsultation, { initialState: initialValues })
+  }
+
+  removeClient() {
+    this.client = undefined
   }
 }

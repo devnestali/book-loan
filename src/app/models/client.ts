@@ -1,5 +1,5 @@
 export interface Client {
-  id: string;
+  id: number;
   cliCPF: string;
   cliNome: string;
   cliEndereco: string;
