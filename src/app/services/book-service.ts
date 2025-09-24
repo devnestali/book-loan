@@ -48,6 +48,14 @@ export class BookService {
     )
   }
 
+  selectBookById(id: number) {
+    return this.httpClient.get<any>(this.baseUrl + 'livro/' + id).pipe(
+      map((response: Book) => {
+        return response
+      })
+    )
+  }
+
   changeBook(book: Book) {
     return this.httpClient.put<any>(this.baseUrl + 'livro', book).pipe(
       map((response) => {

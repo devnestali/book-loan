@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Book } from '../../models/book';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -10,6 +10,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class BookConsultation {
   bookConsultation = ''
+  onClose: EventEmitter<any> = new EventEmitter<void>()
+
   books: Book[] = [
   {
     "id": 5,
@@ -57,5 +59,11 @@ export class BookConsultation {
 
   closeModal() {
     this.bsModalRef.hide()
+  }
+
+  addBook(book: Book) {
+    this.onClose.emit(book)
+
+    this.closeModal()
   }
 }

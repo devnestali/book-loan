@@ -9,10 +9,10 @@
 
     <div class="text-end">
       @if (showAdd) {
-        <button class="btn btn-success"><i class="fa fa-plus"></i></button>
+        <button (click)="addOrRemoveBook()" class="btn btn-success"><i class="fa fa-plus"></i></button>
       }
       @if (showTrash) {
-        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+        <button (click)="addOrRemoveBook()" class="btn btn-danger"><i class="fa fa-trash"></i></button>
       }
     </div>
   </div>
