@@ -52,7 +52,7 @@
           <app-info-book
             [book]="book"
             [showTrash]="true"
-            (clickButton)="removeBook()"
+            (clickButton)="removeBook(book.id)"
           ></app-info-book>
         }
       </div>

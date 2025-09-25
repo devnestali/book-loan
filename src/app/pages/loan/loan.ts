@@ -4,8 +4,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClientConsultation } from '../../modals/client-consultation/client-consultation';
 import { Client } from '../../models/client';
 import { BookConsultation } from '../../modals/book-consultation/book-consultation';
-import { ClientService } from '../../services/client-service';
-import { BookService } from '../../services/book-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-loan',
@@ -25,8 +24,7 @@ export class Loan {
 
   constructor(
     private modalService: BsModalService,
-    private clientService: ClientService,
-    private bookService: BookService
+    private toastr: ToastrService
   ) {}
 
   openClientConsultationModal() {
@@ -49,7 +47,13 @@ export class Loan {
     this.bsModalRef = this.modalService.show(BookConsultation, { initialState: initialValues })
 
     this.bsModalRef.content.onClose.subscribe((result: Book) => {
-      this.books.push(result)
+      const thereAreBooks = this.books.some((book) => book.id === result.id)
+
+      if(thereAreBooks) {
+        this.toastr.error("Ya has añadido este libro a la selección de libros para préstamo.")
+      } else {
+        this.books.push(result)
+      }
     })
   }
 
@@ -57,7 +61,7 @@ export class Loan {
     this.client = undefined
   }
 
-  removeBook() {
-    this.books.shift()
+  removeBook(bookId: number) {
+    this.books = this.books.filter((book) => book.id !== bookId)
   }
 }
