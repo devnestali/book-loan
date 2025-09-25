@@ -12,7 +12,8 @@ const API_MESSAGES_TO_ES: Record<string, string> = {
   "Usuário ou senha inválido.": "Usuario o contraseña no válidos.",
   "Usuário não existe.": "Usuario no existe.",
   "Você não tem permissão para alterar os usuários do sistema.": "No tienes permiso para cambiar usuarios del sistema.",
-  "Você não tem permissão para consultar os usuários do sistema.": "No tienes permiso para consultar a los usuarios del sistema."
+  "Você não tem permissão para consultar os usuários do sistema.": "No tienes permiso para consultar a los usuarios del sistema.",
+  "Emprestimo incluído com sucesso!": "!Préstamo incluido exitosamente!"
 }
 
 export function translateMessages(message: string) {

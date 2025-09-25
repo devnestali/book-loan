@@ -28,6 +28,17 @@
         >
         </app-info-client>
       }
+      @if (client) {
+        <div>
+          <label for="deliveryDate">Fecha de entrega</label>
+          <input
+            type="date"
+            id="deliveryDate"
+            [(ngModel)]="deliveryDate"
+            class="form-control"
+          />
+        </div>
+      }
     </div>
 
     <div class="col-md-6 mb-4">
@@ -61,7 +72,13 @@
 
   <div class="row mt-4 mb-4">
     <div class="col-12">
-      <button class="btn btn-success me-2">Confirmar préstamo</button>
+      <button
+        class="btn btn-success me-2"
+        [disabled]="!client || !deliveryDate || books.length === 0"
+        (click)="addLoan()"
+      >
+        Confirmar préstamo
+      </button>
       <button class="btn btn-secondary">Cancelar</button>
     </div>
   </div>
