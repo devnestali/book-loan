@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoansGet } from '../../models/loansGet';
 import { LoanService } from '../../services/loan-service';
 import { Pagination } from '../../models/pagination';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loans',
@@ -15,7 +16,10 @@ export class Loans implements OnInit{
   pageNumber = 1
   pageSize = 10
 
-  constructor(private loanService: LoanService){}
+  constructor(
+    private loanService: LoanService,
+    private router: Router
+  ){}
 
   ngOnInit(): void {
     this.selectLoans()
@@ -40,7 +44,7 @@ export class Loans implements OnInit{
   }
 
   changeLoan(loan: LoansGet) {
-    console.log(loan)
+    this.router.navigate(['loan'], { state: { loan } })
   }
 
 }

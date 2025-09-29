@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ClientConsultation } from '../../modals/client-consultation/client-consultation';
@@ -8,6 +8,10 @@ import { ToastrService } from 'ngx-toastr';
 import { Loans } from '../../models/loan';
 import { LoanService } from '../../services/loan-service';
 import { translateMessages } from '../../utils/translateMessages';
+import { LoansGet } from '../../models/loansGet';
+import { Router } from '@angular/router';
+import { formateDate } from '../../utils/formateDate';
+import { BorrowedBook } from '../../services/borrowed-book';
 
 @Component({
   selector: 'app-loan',
@@ -15,8 +19,9 @@ import { translateMessages } from '../../utils/translateMessages';
   templateUrl: './loan.html',
   styleUrl: './loan.css'
 })
-export class Loan {
+export class Loan implements OnInit{
   books: Book[] = [];
+  loan?: LoansGet
 
   client?: Client
   deliveryDate?: string
@@ -29,8 +34,32 @@ export class Loan {
   constructor(
     private modalService: BsModalService,
     private toastr: ToastrService,
-    private loanService: LoanService
-  ) {}
+    private loanService: LoanService,
+    private borrowedBook: BorrowedBook,
+    private router: Router
+  ) {
+    const currentNavigation = this.router.currentNavigation()
+
+    if(currentNavigation?.extras.state) {
+      this.loan = currentNavigation.extras.state['loan']
+    }
+  }
+
+  ngOnInit(): void {
+    if (this.loan) {
+      this.client = this.loan.clienteDTO
+
+      const formattedDate = formateDate(this.loan.dataEntrega)
+
+      this.deliveryDate = formattedDate
+
+      this.borrowedBook.includeBorrowedBook(this.loan.id).subscribe({
+        next: (response: any) => {
+          this.books = response.map((borrowedBook: any) => borrowedBook.livro)
+        }
+      })
+    }
+  }
 
   openClientConsultationModal() {
     const initialValues = {
