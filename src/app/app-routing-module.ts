@@ -13,6 +13,7 @@ import { authGuard } from './guards/auth-guard';
 import { adminGuard } from './guards/admin-guard';
 import { AuthorizationMessage } from './pages/authorization-message/authorization-message';
 import { loginVerifyGuard } from './guards/login-verify-guard';
+import { Loans } from './pages/loans/loans';
 
 const routes: Routes = [
   {
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path: 'loan',
     component: Loan,
+    canActivate: [authGuard]
+  },
+  {
+    path: 'loans',
+    component: Loans,
     canActivate: [authGuard]
   },
   {

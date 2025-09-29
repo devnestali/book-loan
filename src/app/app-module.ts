@@ -27,6 +27,7 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
 import { AuthorizationMessage } from './pages/authorization-message/authorization-message';
 import { LoadingInterceptor } from './interceptors/loading-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
+import { Loans } from './pages/loans/loans';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ErrorInterceptor } from './interceptors/error-interceptor';
     Books,
     BookForms,
     Loan,
+    Loans,
     InfoBook,
     ClientConsultation,
     InfoClient,
