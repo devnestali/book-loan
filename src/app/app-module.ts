@@ -28,6 +28,7 @@ import { AuthorizationMessage } from './pages/authorization-message/authorizatio
 import { LoadingInterceptor } from './interceptors/loading-interceptor';
 import { ErrorInterceptor } from './interceptors/error-interceptor';
 import { Loans } from './pages/loans/loans';
+import { provideNgxMask } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { Loans } from './pages/loans/loans';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    provideNgxMask(),
   ],
   bootstrap: [App]
 })

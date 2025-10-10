@@ -13,6 +13,7 @@
           [class.is-invalid]="clientForms.get('cliCPF')?.errors && clientForms.get('cliCPF')?.touched"
           placeholder="Introduzca su número de identificación"
           formControlName="cliCPF"
+          mask="000.000.000-00"
         />
         <div class="invalid-feedback">
           @if (clientForms.get('cliCPF')?.hasError('required')) {
@@ -26,6 +27,7 @@
           }
         </div>
       </div>
+
       <div class="col-md-8">
         <label for="name" class="form-label">Nombre</label>
         <input
@@ -45,6 +47,7 @@
           }
         </div>
       </div>
+
       <div class="col-md-6">
         <label for="address" class="form-label">Dirección</label>
         <input
@@ -132,8 +135,9 @@
           type="tel"
           class="form-control"
           [class.is-invalid]="clientForms.get('cliTelefoneFixo')?.errors && clientForms.get('cliTelefoneFixo')?.touched"
-          placeholder="612345678"
+          placeholder="(000) 000 00 00"
           formControlName="cliTelefoneFixo"
+          mask="(000) 000 00 00"
         />
          <div class="invalid-feedback">
           @if (clientForms.get('cliTelefoneFixo')?.hasError('required')) {
@@ -155,8 +159,9 @@
           type="tel"
           class="form-control"
           [class.is-invalid]="clientForms.get('cliTelefoneCelular')?.errors && clientForms.get('cliTelefoneCelular')?.touched"
-          placeholder="612345678"
+          placeholder="(000) 000 000 00"
           formControlName="cliTelefoneCelular"
+          mask="(000) 000 000 00"
         />
          <div class="invalid-feedback">
           @if (clientForms.get('cliTelefoneCelular')?.hasError('required')) {
