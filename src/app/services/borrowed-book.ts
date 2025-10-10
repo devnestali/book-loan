@@ -6,7 +6,7 @@ import { map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BorrowedBook {
+export class borrowedBookService {
   baseUrl: string = environment.apiUrl
 
   constructor(private httpClient: HttpClient) {}

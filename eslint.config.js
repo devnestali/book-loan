@@ -34,8 +34,9 @@ module.exports = tseslint.config(
       "@angular-eslint/prefer-inject": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "@angular-eslint/template/click-events-have-key-events": [
-      "off"
-    ]
+        "off"
+      ],
+      "@typescript-eslint/no-non-null-asserted-optional-chain": "off"
     },
   },
   {

@@ -13,7 +13,8 @@ const API_MESSAGES_TO_ES: Record<string, string> = {
   "Usuário não existe.": "Usuario no existe.",
   "Você não tem permissão para alterar os usuários do sistema.": "No tienes permiso para cambiar usuarios del sistema.",
   "Você não tem permissão para consultar os usuários do sistema.": "No tienes permiso para consultar a los usuarios del sistema.",
-  "Emprestimo incluído com sucesso!": "!Préstamo incluido exitosamente!"
+  "Emprestimo incluído com sucesso!": "!Préstamo incluido exitosamente!",
+  "Emprestimo alterado com sucesso!": "!Préstamo alterado exitosamente!"
 }
 
 export function translateMessages(message: string) {

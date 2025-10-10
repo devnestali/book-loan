@@ -75,9 +75,9 @@
       <button
         class="btn btn-success me-2"
         [disabled]="!client || !deliveryDate || books.length === 0"
-        (click)="addLoan()"
+        (click)="loan ? changeLoan() : addLoan()"
       >
-        Confirmar préstamo
+        {{ loan  ? 'Alterar' : 'Confirmar'}} préstamo
       </button>
       <button class="btn btn-secondary">Cancelar</button>
     </div>

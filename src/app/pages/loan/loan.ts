@@ -11,7 +11,8 @@ import { translateMessages } from '../../utils/translateMessages';
 import { LoansGet } from '../../models/loansGet';
 import { Router } from '@angular/router';
 import { formateDate } from '../../utils/formateDate';
-import { BorrowedBook } from '../../services/borrowed-book';
+import { borrowedBookService } from '../../services/borrowed-book';
+import { loansPut } from '../../models/loansPut';
 
 @Component({
   selector: 'app-loan',
@@ -35,7 +36,7 @@ export class Loan implements OnInit{
     private modalService: BsModalService,
     private toastr: ToastrService,
     private loanService: LoanService,
-    private borrowedBook: BorrowedBook,
+    private borrowedBookService: borrowedBookService,
     private router: Router
   ) {
     const currentNavigation = this.router.currentNavigation()
@@ -53,7 +54,7 @@ export class Loan implements OnInit{
 
       this.deliveryDate = formattedDate
 
-      this.borrowedBook.includeBorrowedBook(this.loan.id).subscribe({
+      this.borrowedBookService.includeBorrowedBook(this.loan.id).subscribe({
         next: (response: any) => {
           this.books = response.map((borrowedBook: any) => borrowedBook.livro)
         }
@@ -118,5 +119,22 @@ export class Loan implements OnInit{
       }
     })
     }
+  }
+
+  changeLoan() {
+    const loanPut: loansPut = {
+      id: this.loan?.id!,
+      idCliente: this.client?.id!,
+      idsLivros: this.books.map((book) => book.id),
+      dataEntrega: this.deliveryDate!,
+      entregue: false,
+    }
+
+    this.loanService.changeLoan(loanPut).subscribe({
+      next: (response) => {
+        const translatedSuccessMessage = translateMessages(response.message)
+        this.toastr.success(translatedSuccessMessage)
+      }
+    })
   }
 }

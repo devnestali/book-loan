@@ -5,6 +5,7 @@ import { map } from 'rxjs';
 import { Loans } from '../models/loan';
 import { LoansGet } from '../models/loansGet';
 import { PaginatedResult } from '../models/pagination';
+import { loansPut } from '../models/loansPut';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,14 @@ export class LoanService {
 
   includeLoan(loan: Loans) {
     return this.httpClient.post<any>(this.baseUrl + 'emprestimo', loan).pipe(
+      map((response) => {
+        return response
+      })
+    )
+  }
+
+  changeLoan(loansPut: loansPut) {
+    return this.httpClient.put<any>(this.baseUrl + 'emprestimo', loansPut).pipe(
       map((response) => {
         return response
       })
