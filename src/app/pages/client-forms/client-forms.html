@@ -130,7 +130,6 @@
         <input
           id="landline"
           type="tel"
-          pattern="^[6789][0-9]{8}$"
           class="form-control"
           [class.is-invalid]="clientForms.get('cliTelefoneFixo')?.errors && clientForms.get('cliTelefoneFixo')?.touched"
           placeholder="612345678"
@@ -154,7 +153,6 @@
         <input
           id="cellphone"
           type="tel"
-          pattern="^[6789][0-9]{8}$"
           class="form-control"
           [class.is-invalid]="clientForms.get('cliTelefoneCelular')?.errors && clientForms.get('cliTelefoneCelular')?.touched"
           placeholder="612345678"

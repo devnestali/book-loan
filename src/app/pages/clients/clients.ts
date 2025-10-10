@@ -3,6 +3,7 @@ import { Client } from '../../models/client';
 import { Router } from '@angular/router';
 import { ClientService } from '../../services/client-service';
 import { Pagination } from '../../models/pagination';
+import { TextFormatter } from '../../helpers/TextFormatter';
 
 @Component({
   selector: 'app-clients',
@@ -45,5 +46,13 @@ export class Clients implements OnInit{
       this.pageNumber = event.page
       this.selectClients()
     }
+  }
+
+  phoneNumberFormatter(phone: string) {
+    return TextFormatter.formatPhoneNumber(phone)
+  }
+
+  cpfFormatter(cpf: string) {
+    return TextFormatter.formatCPF(cpf)
   }
 }

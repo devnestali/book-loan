@@ -2,7 +2,7 @@
   <div class="card-body">
     <h5>{{client?.cliNome}}</h5>
     <p>
-      <b>NIE/DNI: </b> {{client?.cliCPF}} <br />
+      <b>NIE/DNI: </b> {{cpfFormatter(client?.cliCPF)}} <br />
       <b>Ubicación: </b>
       {{
         client?.cliEndereco +
@@ -13,8 +13,8 @@
         ', numero ' +
         client?.cliNumero
       }} <br />
-      <b>Teléfono Móvil: </b> {{client?.cliTelefoneCelular}}<br />
-      <b>Teléfono Fijo: </b> {{client?.cliTelefoneFixo}}<br />
+      <b>Teléfono Móvil: </b> {{ phoneNumberFormatter(client?.cliTelefoneCelular) }}<br />
+      <b>Teléfono Fijo: </b> {{ landLineFormatter(client?.cliTelefoneFixo) }}<br />
     </p>
     <div class="text-end">
       @if(showTrash) {

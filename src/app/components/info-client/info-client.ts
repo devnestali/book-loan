@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Client } from '../../models/client';
+import { TextFormatter } from '../../helpers/TextFormatter';
 
 @Component({
   selector: 'app-info-client',
@@ -15,5 +16,29 @@ export class InfoClient {
 
   addOrRemove() {
     this.clickButton.emit()
+  }
+
+  cpfFormatter(cpf: string | undefined) {
+    if (cpf) {
+      return TextFormatter.formatCPF(cpf)
+    }
+
+    return undefined
+  }
+
+  landLineFormatter(phone: string | undefined) {
+    if (phone) {
+      return TextFormatter.formatLandline(phone)
+    }
+
+    return undefined
+  }
+
+  phoneNumberFormatter(phone: string | undefined) {
+    if (phone) {
+      return TextFormatter.formatPhoneNumber(phone)
+    }
+
+    return undefined
   }
 }

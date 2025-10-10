@@ -3,6 +3,7 @@ import { LoansGet } from '../../models/loansGet';
 import { LoanService } from '../../services/loan-service';
 import { Pagination } from '../../models/pagination';
 import { Router } from '@angular/router';
+import { TextFormatter } from '../../helpers/TextFormatter';
 
 @Component({
   selector: 'app-loans',
@@ -45,6 +46,14 @@ export class Loans implements OnInit{
 
   changeLoan(loan: LoansGet) {
     this.router.navigate(['loan'], { state: { loan } })
+  }
+
+  dateFormatter(date: string) {
+    return TextFormatter.formatNewDate(date)
+  }
+
+  cpfFormatter(cpf: string) {
+    return TextFormatter.formatCPF(cpf)
   }
 
 }

@@ -27,9 +27,9 @@
               </button>
             </td>
             <td>{{loan.clienteDTO.cliNome}}</td>
-            <td>{{loan.clienteDTO.cliCPF}}</td>
-            <td>{{loan.dataEmprestimo}}</td>
-            <td>{{loan.dataEntrega}}</td>
+            <td>{{ cpfFormatter(loan.clienteDTO.cliCPF) }}</td>
+            <td>{{ dateFormatter(loan.dataEmprestimo) }}</td>
+            <td>{{ dateFormatter(loan.dataEntrega) }}</td>
           </tr>
         }
       </tbody>
