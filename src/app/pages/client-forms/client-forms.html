@@ -184,6 +184,14 @@
         >
           {{ client ? 'Alterar' : 'Incluir' }}
         </button>
+        @if (client) {
+          <button
+            class="btn btn-danger ms-2"
+            (click)="deleteClient()"
+          >
+            Eliminar
+          </button>
+        }
       </div>
     </div>
   </form>

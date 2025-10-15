@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { translateMessages } from '../../utils/translateMessages';
 import { formateDate } from '../../utils/formateDate';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-book-forms',
@@ -59,6 +60,30 @@ export class BookForms implements OnInit{
         },
       })
     }
+  }
+
+  deleteBook() {
+    Swal.fire({
+      icon: 'question',
+      title: 'Eliminar libro',
+      text: '¿Estas seguro que deseas eliminar el libro?',
+      showCancelButton: true,
+      cancelButtonText: 'No',
+      confirmButtonText: 'Sí'
+    }).then((result) => {
+      if(result.isConfirmed) {
+        if(this.book?.id) {
+          this.bookService.deleteBookById(this.book.id).subscribe({
+            next: (response) => {
+              const translatedSuccessResponse = translateMessages(response.message)
+              this.toastr.success(translatedSuccessResponse)
+
+              this.router.navigateByUrl('books')
+          }
+        })
+      }
+      }
+    })
   }
 
   changeBook() {

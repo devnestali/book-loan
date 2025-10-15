@@ -130,6 +130,14 @@
         >
           {{ book ? 'Alterar' : 'Incluir' }}
         </button>
+        @if (book) {
+          <button
+            class="btn btn-danger ms-2"
+            (click)="deleteBook()"
+          >
+            Eliminar
+          </button>
+        }
       </div>
     </div>
   </form>

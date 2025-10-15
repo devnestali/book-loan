@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ClientService } from '../../services/client-service';
 import { translateMessages } from '../../utils/translateMessages';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-client-forms',
@@ -62,6 +63,30 @@ export class ClientForms implements OnInit {
         }
       })
     }
+  }
+
+  deleteClient() {
+    Swal.fire({
+      title: 'Eliminar Cliente',
+      text: '¿Estas seguro que deseas eliminar el cliente?',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: 'No',
+      confirmButtonText: 'Sí',
+    }).then((result) => {
+      if(result.isConfirmed) {
+        if(this.client?.id) {
+          this.clientService.deleteClientById(this.client.id).subscribe({
+            next: (response) => {
+              const translatedSuccessResponse = translateMessages(response.message)
+              this.toastr.success(translatedSuccessResponse)
+
+              this.router.navigateByUrl('clients')
+          }
+        })
+      }
+      }
+    })
   }
 
   changeClient() {

@@ -56,6 +56,14 @@ export class BookService {
     )
   }
 
+  deleteBookById(id: number) {
+    return this.httpClient.delete<any>(this.baseUrl + 'livro/' + id).pipe(
+      map((response) => {
+        return response
+      })
+    )
+  }
+
   changeBook(book: Book) {
     return this.httpClient.put<any>(this.baseUrl + 'livro', book).pipe(
       map((response) => {
