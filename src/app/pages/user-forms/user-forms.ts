@@ -49,7 +49,7 @@ export class UserForms implements OnInit {
       email: ['', [Validators.required, Validators.maxLength(250), Validators.email]],
       password: ['', passwordValidators],
       isAdmin: [false],
-      ativo: [true]
+      ativo: [false]
     })
   }
 
