@@ -31,6 +31,7 @@ export class Loan implements OnInit{
   bsModalRef?: BsModalRef;
   clientConsultation = '';
   bookConsultation = '';
+  deliver?: boolean
 
   constructor(
     private modalService: BsModalService,
@@ -53,6 +54,7 @@ export class Loan implements OnInit{
       const formattedDate = formateDate(this.loan.dataEntrega)
 
       this.deliveryDate = formattedDate
+      this.deliver = this.loan.entregue
 
       this.borrowedBookService.includeBorrowedBook(this.loan.id).subscribe({
         next: (response: any) => {
@@ -127,7 +129,7 @@ export class Loan implements OnInit{
       idCliente: this.client?.id!,
       idsLivros: this.books.map((book) => book.id),
       dataEntrega: this.deliveryDate!,
-      entregue: false,
+      entregue: this.deliver!,
     }
 
     this.loanService.changeLoan(loanPut).subscribe({

@@ -37,6 +37,17 @@
             [(ngModel)]="deliveryDate"
             class="form-control"
           />
+          @if (loan) {
+            <div class="form-check">
+              <label for="deliver" class="form-check-label">Entregado</label>
+              <input
+                type="checkbox"
+                id="deliver"
+                class="form-check-input"
+                [(ngModel)]="deliver"
+              />
+            </div>
+          }
         </div>
       }
     </div>
