@@ -13,7 +13,7 @@ import { Pagination } from '../../models/pagination';
 export class ClientConsultation implements OnInit{
   clientConsultation = ''
   page = 1
-  itemsPerPage = 1
+  itemsPerPage = 10
   pagination: Pagination | undefined
 
   onClose: EventEmitter<any> = new EventEmitter<void>()

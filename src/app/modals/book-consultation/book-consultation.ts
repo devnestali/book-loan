@@ -1,6 +1,8 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Book } from '../../models/book';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Pagination } from '../../models/pagination';
+import { BookService } from '../../services/book-service';
 
 @Component({
   selector: 'app-book-consultation',
@@ -8,54 +10,24 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './book-consultation.html',
   styleUrl: './book-consultation.css'
 })
-export class BookConsultation {
+export class BookConsultation implements OnInit{
   bookConsultation = ''
   onClose: EventEmitter<any> = new EventEmitter<void>()
 
-  books: Book[] = [
-  {
-    "id": 5,
-    "livroNome": "El Programador Pragmatico",
-    "livroAutor": "David Thomas & Andrew Hunt",
-    "livroEditora": "Anaya",
-    "livroAnoPublicacao": "2018-02-17T00:00:00",
-    "livroEdicao": "1"
-  },
-  {
-    "id": 4,
-    "livroNome": "Learning React",
-    "livroAutor": "Banks & Porchello",
-    "livroEditora": "O'Reilly",
-    "livroAnoPublicacao": "2022-09-14T00:00:00",
-    "livroEdicao": "1"
-  },
-  {
-    "id": 3,
-    "livroNome": "Learning React",
-    "livroAutor": "Banks & Porchello",
-    "livroEditora": "O'Reilly",
-    "livroAnoPublicacao": "2022-09-14T00:00:00",
-    "livroEdicao": "1"
-  },
-  {
-    "id": 2,
-    "livroNome": "Codigo Limpio",
-    "livroAutor": "Robert C. Martin",
-    "livroEditora": "ARTER",
-    "livroAnoPublicacao": "2001-08-07T00:00:00",
-    "livroEdicao": "3"
-  },
-  {
-    "id": 1,
-    "livroNome": "Los sueños de lo que esta hecho la Materia",
-    "livroAutor": "Stephen Hawking",
-    "livroEditora": "Critica",
-    "livroAnoPublicacao": "2022-07-12T00:00:00",
-    "livroEdicao": "1"
-  }
-]
+  page = 1
+  itemsPerPage = 10
+  pagination: Pagination | undefined
 
-  constructor(private bsModalRef: BsModalRef) {}
+  books: Book[] = []
+
+  constructor(
+    private bsModalRef: BsModalRef,
+    private bookService: BookService
+  ) {}
+
+  ngOnInit(): void {
+    this.consultBooks()
+  }
 
   closeModal() {
     this.bsModalRef.hide()
@@ -66,4 +38,23 @@ export class BookConsultation {
 
     this.closeModal()
   }
+
+  consultBooks() {
+    this.bookService.searchForBook(this.bookConsultation, this.page, this.itemsPerPage).subscribe({
+      next: (response) => {
+        if (response.result && response.pagination) {
+          this.books = response.result
+          this.pagination = response.pagination
+        }
+      }
+    })
+  }
+
+  pageChanged(event: any) {
+    if (this.page !== event.page) {
+      this.page = event.page
+      this.consultBooks()
+    }
+  }
 }
+

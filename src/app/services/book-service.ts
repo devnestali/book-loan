@@ -71,4 +71,30 @@ export class BookService {
       })
     )
   }
+
+  searchForBook(term?: string, page?: number, itemsPerPage?: number) {
+    let params = new HttpParams()
+
+    if (term && page && itemsPerPage) {
+      params = params.append('termo', term)
+      params = params.append('pageSize', itemsPerPage)
+      params = params.append('pageNumber', page)
+    }
+
+    return this.httpClient.get<any>(this.baseUrl + 'livro/pesquisar', { observe: 'response', params }).pipe(
+      map((response) => {
+        if (response.body) {
+          this.paginatedResult.result = response.body
+        }
+
+        const pagination = response.headers.get('Pagination')
+
+        if (pagination) {
+          this.paginatedResult.pagination = JSON.parse(pagination)
+        }
+
+        return this.paginatedResult
+      })
+    )
+  }
 }
