@@ -69,4 +69,30 @@ export class ClientService {
       })
     )
   }
+
+  searchClient(term: string, page?: number, itemsPerPage?:number) {
+    let params = new HttpParams()
+    if (page && itemsPerPage && term) {
+      params = params.append('termo', term)
+      params = params.append('pageNumber', page)
+      params = params.append('pageSize', itemsPerPage)
+    }
+
+
+    return this.httpClient.get<any>(this.baseUrl + 'cliente/pesquisar', { observe: 'response', params }).pipe(
+      map((response) => {
+        if (response.body) {
+          this.paginatedResult.result = response.body
+        }
+
+        const pagination = response.headers.get('Pagination')
+
+        if (pagination) {
+          this.paginatedResult.pagination = JSON.parse(pagination)
+        }
+
+        return this.paginatedResult
+      })
+    )
+  }
 }

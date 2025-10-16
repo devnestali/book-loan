@@ -1,6 +1,8 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Client } from '../../models/client';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { ClientService } from '../../services/client-service';
+import { Pagination } from '../../models/pagination';
 
 @Component({
   selector: 'app-client-consultation',
@@ -8,47 +10,24 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './client-consultation.html',
   styleUrl: './client-consultation.css'
 })
-export class ClientConsultation {
+export class ClientConsultation implements OnInit{
   clientConsultation = ''
+  page = 1
+  itemsPerPage = 1
+  pagination: Pagination | undefined
+
   onClose: EventEmitter<any> = new EventEmitter<void>()
 
-  clients: Client[] = [
-  {
-    "id": 7,
-    "cliCPF": "11111111113",
-    "cliNome": "Jorge",
-    "cliEndereco": "Calle Exemplo",
-    "cliCidade": "Madrid",
-    "cliBairro": "Bela Vista",
-    "cliNumero": "12",
-    "cliTelefoneCelular": "643727630",
-    "cliTelefoneFixo": "643732551"
-  },
-  {
-    "id": 6,
-    "cliCPF": "11111111112",
-    "cliNome": "Jorge Saulo",
-    "cliEndereco": "Calle Exemplo",
-    "cliCidade": "Madrid",
-    "cliBairro": "Bela Vista",
-    "cliNumero": "12",
-    "cliTelefoneCelular": "643702717",
-    "cliTelefoneFixo": "643702717"
-  },
-  {
-    "id": 5,
-    "cliCPF": "11111111111",
-    "cliNome": "Putin",
-    "cliEndereco": "Calle Exemplo",
-    "cliCidade": "Madrid",
-    "cliBairro": "Bela Vista",
-    "cliNumero": "12",
-    "cliTelefoneCelular": "643732551",
-    "cliTelefoneFixo": "643732551"
-  }
-]
+  clients: Client[] = []
 
-  constructor(private bsModalRef: BsModalRef) {}
+  constructor(
+    private bsModalRef: BsModalRef,
+    private clientService: ClientService
+  ) {}
+
+  ngOnInit(): void {
+    this.consultClients()
+  }
 
   closeModal() {
     this.bsModalRef.hide()
@@ -58,5 +37,27 @@ export class ClientConsultation {
     this.onClose.emit(client)
 
     this.closeModal()
+  }
+
+  consultClients() {
+    this.clientService.searchClient(
+      this.clientConsultation,
+      this.page,
+      this.itemsPerPage
+    ).subscribe({
+      next: (response) => {
+        if (response.result && response.pagination) {
+          this.clients = response.result
+          this.pagination = response.pagination
+        }
+      }
+    })
+  }
+
+  pageChanged(event: any) {
+    if(this.page !== event.page) {
+      this.page = event.page
+      this.consultClients()
+    }
   }
 }
