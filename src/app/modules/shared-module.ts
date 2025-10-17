@@ -5,6 +5,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 
 
@@ -17,7 +18,8 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
     ModalModule.forRoot(),
     PaginationModule.forRoot(),
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+    CollapseModule.forRoot()
   ],
   exports: [
     ToastrModule,
@@ -25,7 +27,8 @@ import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
     ModalModule,
     PaginationModule,
     NgxMaskDirective,
-    NgxMaskPipe
+    NgxMaskPipe,
+    CollapseModule
   ]
 })
 export class SharedModule { }

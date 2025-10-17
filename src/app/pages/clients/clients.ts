@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ClientService } from '../../services/client-service';
 import { Pagination } from '../../models/pagination';
 import { TextFormatter } from '../../helpers/TextFormatter';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { clientFilter } from '../../models/clientFilter';
 
 @Component({
   selector: 'app-clients',
@@ -17,14 +19,33 @@ export class Clients implements OnInit{
   pageNumber = 1
   pageSize = 10
 
+  isCollapsed = true
+  clientForms: FormGroup = new FormGroup({})
+
   constructor(
     private router: Router,
     private clientService: ClientService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.selectClients()
+    this.initializeForm()
   }
+
+  initializeForm() {
+    this.clientForms = this.formBuilder.group(
+      {
+        cpf: ['', [Validators.minLength(11), Validators.maxLength(11),]],
+        nome: ['', [Validators.maxLength(200)]],
+        cidade: ['', [Validators.maxLength(50)]],
+        bairro: ['', [Validators.maxLength(50)]],
+        telefoneCelular: ['', [Validators.minLength(11), Validators.maxLength(11)]],
+        telefoneFixo: ['', [Validators.minLength(10), Validators.maxLength(10)]],
+      }
+    )
+}
+
 
   selectClients() {
     this.clientService.selectClients(this.pageNumber, this.pageSize).subscribe({
@@ -54,5 +75,21 @@ export class Clients implements OnInit{
 
   cpfFormatter(cpf: string) {
     return TextFormatter.formatCPF(cpf)
+  }
+
+  filter() {
+    const clientFilter: clientFilter = this.clientForms.value
+
+    clientFilter.pageNumber = this.pageNumber
+    clientFilter.pageSize = this.pageSize
+
+    this.clientService.filterClient(clientFilter).subscribe({
+      next: (response) => {
+        if (response.result && response.pagination) {
+          this.clients = response.result
+          this.pagination = response.pagination
+        }
+      }
+    })
   }
 }

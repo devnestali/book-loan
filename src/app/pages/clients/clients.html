@@ -7,6 +7,146 @@
     Nuevo cliente
   </button>
 
+  <button
+    type="button"
+    class="btn btn-sm btn-primary ms-2"
+    (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
+  >
+    Filtrar
+  </button>
+
+  <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+    <div class="well well-lg card card-block card-header mt-3 mb-3">
+      <form [formGroup]="clientForms">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="identification" class="form-label">NIE/DNI</label>
+            <input
+              id="identification"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="clientForms.get('cpf')?.errors && clientForms.get('cpf')?.touched"
+              placeholder="Introduzca su número de identificación"
+              formControlName="cpf"
+              mask="000.000.000-00"
+            />
+            <div class="invalid-feedback">
+              @if (clientForms.get('cpf')?.hasError('minlength')) {
+                El numero del NIE/DNI debe tener mas de 11 caracteres.
+              }
+              @if (clientForms.get('cpf')?.hasError('maxlength')) {
+                El numero del NIE/DNI debe tener menos de 11 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <label for="name" class="form-label">Nombre</label>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="clientForms.get('nome')?.errors && clientForms.get('nome')?.touched"
+              placeholder="Introduzca su nombre"
+              formControlName="nome"
+            />
+            <div class="invalid-feedback">
+              @if (clientForms.get('nome')?.hasError('maxlength')) {
+                El nombre del cliente debe tener hasta 200 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="city" class="form-label">Ciudad</label>
+            <input
+              id="city"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="clientForms.get('cidade')?.errors && clientForms.get('cidade')?.touched"
+              placeholder="Nombre de la ciudad"
+              formControlName="cidade"
+            />
+            <div class="invalid-feedback">
+              @if (clientForms.get('cidade')?.hasError('maxlength')) {
+                La ciudad debe tener hasta 50 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="neighborhood" class="form-label">Barrio</label>
+            <input
+              id="neighborhood"
+              type="text"
+              class="form-control"
+              [class.is-invalid]="clientForms.get('bairro')?.errors && clientForms.get('bairro')?.touched"
+              placeholder="Nombre del bario"
+              formControlName="bairro"
+            />
+            <div class="invalid-feedback">
+              @if (clientForms.get('bairro')?.hasError('maxlength')) {
+                El barrio debe tener hasta 50 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="landline" class="form-label">Teléfono fijo</label>
+            <input
+              id="landline"
+              type="tel"
+              class="form-control"
+              [class.is-invalid]="clientForms.get('telefoneFixo')?.errors && clientForms.get('telefoneFixo')?.touched"
+              placeholder="(000) 000 00 00"
+              formControlName="telefoneFixo"
+              mask="(000) 000 00 00"
+            />
+            <div class="invalid-feedback">
+              @if (clientForms.get('telefoneFixo')?.hasError('minlength')) {
+                El teléfono fijo debe tener mas de 10 caracteres.
+              }
+              @if (clientForms.get('telefoneFixo')?.hasError('maxlength')) {
+                El teléfono fijo debe tener menos de 10 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="cellphone" class="form-label">Teléfono móvil</label>
+            <input
+              id="cellphone"
+              type="tel"
+              class="form-control"
+              [class.is-invalid]="clientForms.get('telefoneCelular')?.errors && clientForms.get('telefoneCelular')?.touched"
+              placeholder="(000) 000 000 00"
+              formControlName="telefoneCelular"
+              mask="(000) 000 000 00"
+            />
+            <div class="invalid-feedback">
+              @if (clientForms.get('telefoneCelular')?.hasError('minlength')) {
+                El teléfono móvil debe tener mas de 11 caracteres.
+              }
+              @if (clientForms.get('telefoneCelular')?.hasError('maxlength')) {
+                El teléfono móvil debe tener menos de 11 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-12 mt-3">
+            <button
+              class="btn btn-success"
+              (click)="filter()"
+            >
+              Filtrar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table class="table">
       <thead>
