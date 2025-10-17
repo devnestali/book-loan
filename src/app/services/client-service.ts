@@ -4,6 +4,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { PaginatedResult } from '../models/pagination';
 import { Client } from '../models/client';
 import { map } from 'rxjs';
+import { clientFilter } from '../models/clientFilter';
+import { addClientQueryValuesOnUrl } from '../utils/addClientQueryValuesOnUrl';
 
 @Injectable({
   providedIn: 'root'
@@ -80,6 +82,26 @@ export class ClientService {
 
 
     return this.httpClient.get<any>(this.baseUrl + 'cliente/pesquisar', { observe: 'response', params }).pipe(
+      map((response) => {
+        if (response.body) {
+          this.paginatedResult.result = response.body
+        }
+
+        const pagination = response.headers.get('Pagination')
+
+        if (pagination) {
+          this.paginatedResult.pagination = JSON.parse(pagination)
+        }
+
+        return this.paginatedResult
+      })
+    )
+  }
+
+  filterClient(clientFilter: clientFilter) {
+    const params = addClientQueryValuesOnUrl(clientFilter)
+
+    return this.httpClient.get<any>(this.baseUrl + 'cliente/filtrar', { observe: 'response', params }).pipe(
       map((response) => {
         if (response.body) {
           this.paginatedResult.result = response.body
