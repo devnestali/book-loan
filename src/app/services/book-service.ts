@@ -4,6 +4,8 @@ import { environment } from '../../environments/environment';
 import { Book } from '../models/book';
 import { map } from 'rxjs';
 import { PaginatedResult } from '../models/pagination';
+import { addBookQueryValuesOnUrl } from '../utils/addBookQueryValuesOnUrl';
+import { BookFilter } from '../models/bookFilter';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +84,26 @@ export class BookService {
     }
 
     return this.httpClient.get<any>(this.baseUrl + 'livro/pesquisar', { observe: 'response', params }).pipe(
+      map((response) => {
+        if (response.body) {
+          this.paginatedResult.result = response.body
+        }
+
+        const pagination = response.headers.get('Pagination')
+
+        if (pagination) {
+          this.paginatedResult.pagination = JSON.parse(pagination)
+        }
+
+        return this.paginatedResult
+      })
+    )
+  }
+
+  filterBook(bookFilter: BookFilter) {
+    const params = addBookQueryValuesOnUrl(bookFilter)
+
+    return this.httpClient.get<any>(this.baseUrl + 'livro/filtrar', { observe: 'response', params }).pipe(
       map((response) => {
         if (response.body) {
           this.paginatedResult.result = response.body

@@ -10,6 +10,123 @@
     Nuevo libro
   </button>
 
+  <button
+    type="button"
+    class="btn btn-sm btn-primary ms-2"
+    (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
+  >
+    Filtrar
+  </button>
+
+  <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+    <div class="well well-lg card card-block card-header mt-3 mb-3">
+      <form [formGroup]="bookForms">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="name" class="form-label">Nombre</label>
+            <input
+              id="name"
+              type="text"
+              class="form-control"
+              placeholder="Introduzca el nombre del libro"
+              formControlName="nome"
+              [class.is-invalid]=" bookForms.get('nome')?.errors && bookForms.get('nome')?.touched"
+            />
+            <div class="invalid-feedback">
+              @if (bookForms.get('nome')?.hasError('maxlength')) {
+                El nombre del libro no puede tener mas que 50 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <label for="autor" class="form-label">Autor</label>
+            <input
+              id="autor"
+              type="text"
+              class="form-control"
+              placeholder="Introduzca el nombre del autor"
+              formControlName="autor"
+              [class.is-invalid]="
+                bookForms.get('autor')?.errors &&
+                bookForms.get('autor')?.touched
+              "
+            />
+            <div class="invalid-feedback">
+              @if (bookForms.get('autor')?.hasError('maxlength')) {
+                El nombre del autor no puede tener mas que 200 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <label for="publisher" class="form-label">Editora</label>
+            <input
+              id="publisher"
+              type="text"
+              class="form-control"
+              placeholder="Introduzca el nombre de la editora"
+              formControlName="editora"
+              [class.is-invalid]="
+                bookForms.get('editora')?.errors &&
+                bookForms.get('editora')?.touched
+              "
+            />
+            <div class="invalid-feedback">
+              @if (bookForms.get('editora')?.hasError('maxlength')) {
+                La editora del libro no puede tener mas que 50 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <label for="publicationYear" class="form-label">Fecha de publicación</label>
+            <input
+              id="publicationYear"
+              type="date"
+              class="form-control"
+              formControlName="anoPublicacao"
+              [class.is-invalid]="
+                bookForms.get('anoPublicacao')?.errors &&
+                bookForms.get('anoPublicacao')?.touched
+              "
+            />
+          </div>
+
+          <div class="col-md-2">
+            <label for="bookEdition" class="form-label">Edición del libro</label>
+            <input
+              id="bookEdition"
+              type="text"
+              class="form-control"
+              placeholder="Edición"
+              formControlName="edicao"
+              [class.is-invalid]="
+                bookForms.get('edicao')?.errors &&
+                bookForms.get('edicao')?.touched
+              "
+            />
+            <div class="invalid-feedback">
+              @if (bookForms.get('edicao')?.hasError('maxlength')) {
+                La edición del libro no puede tener mas que 50 caracteres.
+              }
+            </div>
+          </div>
+
+          <div class="col-md-12 mt-3">
+            <button
+              class="btn btn-success"
+              (click)="filterBooks()"
+            >
+              Filtrar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table class="table">
       <thead>
