@@ -6,6 +6,8 @@ import { Loans } from '../models/loan';
 import { LoansGet } from '../models/loansGet';
 import { PaginatedResult } from '../models/pagination';
 import { loansPut } from '../models/loansPut';
+import { LoanFilter } from '../models/loanFilter';
+import { addLoanQueryValueOnUrl } from '../utils/addLoanQueryValueOnUrl';
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +59,25 @@ export class LoanService {
           return this.paginatedResult;
         })
       );
+  }
+
+  filterLoan(loanFilter: LoanFilter) {
+    const params = addLoanQueryValueOnUrl(loanFilter)
+
+    return this.httpClient.get<any>(this.baseUrl + 'emprestimo/filtrar', { observe: 'response', params }).pipe(
+      map((response) => {
+        if (response.body) {
+          this.paginatedResult.result = response.body
+        }
+
+        const pagination = response.headers.get('Pagination')
+
+        if (pagination) {
+          this.paginatedResult.pagination = JSON.parse(pagination)
+        }
+
+        return this.paginatedResult
+      })
+    )
   }
 }

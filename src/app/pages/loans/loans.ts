@@ -4,6 +4,8 @@ import { LoanService } from '../../services/loan-service';
 import { Pagination } from '../../models/pagination';
 import { Router } from '@angular/router';
 import { TextFormatter } from '../../helpers/TextFormatter';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoanFilter } from '../../models/loanFilter';
 
 @Component({
   selector: 'app-loans',
@@ -11,19 +13,37 @@ import { TextFormatter } from '../../helpers/TextFormatter';
   templateUrl: './loans.html',
   styleUrl: './loans.css'
 })
-export class Loans implements OnInit{
+export class Loans implements OnInit {
   loans: LoansGet[] = []
   pagination: Pagination | undefined
   pageNumber = 1
   pageSize = 10
 
+  isCollapsed = true
+  loanForms: FormGroup = new FormGroup({})
+
   constructor(
     private loanService: LoanService,
-    private router: Router
+    private router: Router,
+    private FormBuilder: FormBuilder
   ){}
 
   ngOnInit(): void {
     this.selectLoans()
+    this.initializeForm()
+  }
+
+  initializeForm() {
+    this.loanForms = this.FormBuilder.group({
+      cpf: ['', [Validators.minLength(11), Validators.maxLength(11)]],
+      nome: ['', [Validators.maxLength(250)]],
+      dataEmprestimoInicio: [''],
+      dataEmprestimoFim: [''],
+      dataEntregaInicio: [''],
+      dataEntregaFim: [''],
+      entregue: [false],
+      naoEntregue: [false],
+    })
   }
 
   selectLoans() {
@@ -54,6 +74,22 @@ export class Loans implements OnInit{
 
   cpfFormatter(cpf: string) {
     return TextFormatter.formatCPF(cpf)
+  }
+
+  filterLoans() {
+    const loanFilter: LoanFilter = this.loanForms.value
+
+    loanFilter.pageNumber = this.pageNumber
+    loanFilter.pageSize = this.pageSize
+
+    this.loanService.filterLoan(loanFilter).subscribe({
+      next: (response) => {
+        if (response.result && response.pagination) {
+          this.loans = response.result
+          this.pagination = response.pagination
+        }
+      }
+    })
   }
 
 }
