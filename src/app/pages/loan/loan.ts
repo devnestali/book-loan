@@ -65,6 +65,10 @@ export class Loan implements OnInit{
   }
 
   openClientConsultationModal() {
+    if (!this.clientConsultation) {
+      return
+    }
+
     const initialValues = {
       clientConsultation: this.clientConsultation,
     }
@@ -74,9 +78,15 @@ export class Loan implements OnInit{
     this.bsModalRef?.content.onClose.subscribe((result: Client) => {
       this.client = result
     })
+
+    this.clientConsultation = ''
   }
 
   openBookConsultationModal() {
+    if (!this.bookConsultation) {
+      return
+    }
+
     const initialValues = {
       bookConsultation: this.bookConsultation
     }
@@ -92,6 +102,8 @@ export class Loan implements OnInit{
         this.books.push(result)
       }
     })
+
+    this.bookConsultation = ''
   }
 
   removeClient() {
