@@ -81,4 +81,9 @@ export class Books implements OnInit{
     })
   }
 
+  undoFilter() {
+    this.selectBooks()
+    this.bookForms.reset()
+  }
+
 }

@@ -92,4 +92,8 @@ export class Loans implements OnInit {
     })
   }
 
+  undoFilter() {
+    this.selectLoans()
+    this.loanForms.reset()
+  }
 }

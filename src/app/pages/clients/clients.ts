@@ -77,7 +77,7 @@ export class Clients implements OnInit{
     return TextFormatter.formatCPF(cpf)
   }
 
-  filter() {
+  clientFilter() {
     const clientFilter: clientFilter = this.clientForms.value
 
     clientFilter.pageNumber = this.pageNumber
@@ -91,5 +91,10 @@ export class Clients implements OnInit{
         }
       }
     })
+  }
+
+  undoFilter() {
+    this.selectClients()
+    this.clientForms.reset()
   }
 }

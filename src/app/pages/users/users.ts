@@ -81,5 +81,10 @@ export class Users implements OnInit {
       }
     })
   }
+
+  undoFilter() {
+    this.selectUsers()
+    this.userForms.reset()
+  }
 }
 
