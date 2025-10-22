@@ -6,6 +6,8 @@ import { environment } from '../../environments/environment';
 import { Login } from '../models/login';
 import { UserToken } from '../models/userToken';
 import { PaginatedResult } from '../models/pagination';
+import { UserFilter } from '../models/userFilter';
+import { addUserQueryValuesOnUrl } from '../utils/addUserQueryValuesOnUrl';
 
 @Injectable({
   providedIn: 'root'
@@ -104,5 +106,25 @@ export class UserService {
   logOut() {
     this.currentUserSource.next(null)
     localStorage.removeItem(this.STORAGE_KEY)
+  }
+
+  filterUsers(userFilter: UserFilter) {
+    const params = addUserQueryValuesOnUrl(userFilter)
+
+    return this.httpClient.get<User[]>(this.baseUrl + 'usuario/filtrar', { observe: 'response', params }).pipe(
+      map((response) => {
+        if (response.body) {
+          this.paginatedResult.result = response.body
+        }
+
+        const pagination = response.headers.get('Pagination')
+
+        if(pagination) {
+          this.paginatedResult.pagination = JSON.parse(pagination)
+        }
+
+        return this.paginatedResult
+      })
+    )
   }
 }

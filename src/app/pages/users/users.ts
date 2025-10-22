@@ -3,6 +3,8 @@ import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { Pagination } from '../../models/pagination';
 import { UserService } from '../../services/user-service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserFilter } from '../../models/userFilter';
 
 @Component({
   selector: 'app-users',
@@ -16,13 +18,29 @@ export class Users implements OnInit {
   pageNumber = 1
   pageSize = 10
 
+  isCollapsed = true
+  userForms: FormGroup = new FormGroup({})
+
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.selectUsers()
+    this.initializeForm()
+  }
+
+  initializeForm() {
+    this.userForms = this.formBuilder.group({
+      nome: ['', [Validators.maxLength(250)]],
+      email: ['', [Validators.maxLength(250), Validators.email]],
+      isAdmin: [false],
+      isNotAdmin: [false],
+      ativo: [false],
+      inativo: [false]
+    })
   }
 
   selectUsers() {
@@ -46,6 +64,22 @@ export class Users implements OnInit {
 
   changeOrDeleteUser(user: User) {
     this.router.navigate(['users/put'], { state: { user }})
+  }
+
+  filterUsers() {
+    const userFilter: UserFilter = this.userForms.value
+
+    userFilter.pageNumber = this.pageNumber
+    userFilter.pageSize = this.pageSize
+
+    this.userService.filterUsers(userFilter).subscribe({
+      next: (response) => {
+        if (response.result && response.pagination) {
+          this.users = response.result
+          this.pagination = response.pagination
+        }
+      }
+    })
   }
 }
 
